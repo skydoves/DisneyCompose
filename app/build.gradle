@@ -16,6 +16,7 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode
         versionName versions.versionName
+        testInstrumentationRunner "com.skydoves.pokedex.AppTestRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -119,6 +120,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
     androidTestImplementation "com.google.truth:truth:$versions.truthVersion"
     androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "com.android.support.test:runner:$versions.androidTestRunner"
 }
 
 apply from: '../spotless.gradle'
