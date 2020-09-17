@@ -1,0 +1,25 @@
+buildscript {
+    apply from: './dependencies.gradle'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHiltCoreVersion"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
