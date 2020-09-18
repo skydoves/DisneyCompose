@@ -31,7 +31,7 @@
         tools:node="merge">
 
       <meta-data
-          android:name="com.skydoves.disneycompose.initializer.TimberInitializer"
+          android:name="com.skydoves.disneycompose.initializer.CoilInitializer"
           android:value="androidx.startup" />
     </provider>
   </application>

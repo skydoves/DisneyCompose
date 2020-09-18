@@ -39,7 +39,6 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
 - [Accompanist](https://github.com/chrisbanes/accompanist) - Coil image loading composables. 
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight http API response and handling error responses.
-- [Glide](https://github.com/bumptech/glide) - image loading and caching library for Android 
 - [WhatIf](https://github.com/skydoves/whatif) - checking nullable object and empty collections more fluently.
 - [Timber](https://github.com/JakeWharton/timber) - logging.
 
