@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import dev.chrisbanes.accompanist.coil.CoilImage
+import dev.chrisbanes.accompanist.coil.CoilImageWithCrossfade
 
 /**
  * A wrapper around [CoilImage] setting a default [contentScale] and loading indicator for loading disney poster images.
@@ -33,7 +34,7 @@ fun NetworkImage(
   modifier: Modifier = Modifier,
   contentScale: ContentScale = ContentScale.Crop
 ) {
-  CoilImage(
+  CoilImageWithCrossfade(
     data = url,
     modifier = modifier,
     contentScale = contentScale,
