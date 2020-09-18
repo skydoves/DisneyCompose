@@ -13,7 +13,7 @@ A demo Disney app using compose and Dagger-Hilt based on modern Android tech-sta
 </p>
 
 ## Download
-Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to download the lastest APK.
+Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to download the latest APK.
 
 ## Screenshots
 <p align="center">
