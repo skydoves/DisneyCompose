@@ -35,11 +35,13 @@ private val DarkColorPalette = darkColors(
 
 private val LightColorPalette = lightColors(
   background = Color.White,
-  onBackground = white87,
+  onBackground = Color.White,
   surface = Color.White,
   primary = purple200,
   primaryVariant = purple500,
-  secondary = purple500
+  secondary = purple500,
+  onPrimary = Color.White,
+  onSecondary = Color.White
 )
 
 @Composable

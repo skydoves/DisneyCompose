@@ -41,7 +41,6 @@ import androidx.ui.tooling.preview.Preview
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.StaggeredVerticalGrid
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
-import com.skydoves.disneycompose.ui.theme.background
 import com.skydoves.disneycompose.ui.theme.purple500
 import com.skydoves.disneycompose.utils.NetworkImage
 import com.skydoves.disneycompose.utils.statusBarsPadding
@@ -55,7 +54,7 @@ fun LibraryPosters(
   ScrollableColumn(
     modifier = modifier
       .statusBarsPadding()
-      .background(background)
+      .background(MaterialTheme.colors.background)
   ) {
     StaggeredVerticalGrid(
       maxColumnWidth = 330.dp,

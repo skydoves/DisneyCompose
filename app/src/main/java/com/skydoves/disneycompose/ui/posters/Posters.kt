@@ -39,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -79,7 +80,7 @@ fun Posters(
           tabs.forEach { tab ->
             BottomNavigationItem(
               icon = { Icon(asset = tab.icon) },
-              label = { Text(text = stringResource(tab.title)) },
+              label = { Text(text = stringResource(tab.title), color = Color.White) },
               selected = tab == selectedTab,
               onClick = { setSelectedTab(tab) },
               alwaysShowLabels = false,
@@ -121,6 +122,7 @@ fun PosterAppBar() {
         .padding(8.dp)
         .align(Alignment.CenterVertically),
       text = stringResource(R.string.app_name),
+      color = Color.White,
       fontSize = 18.sp,
       fontWeight = FontWeight.Bold
     )

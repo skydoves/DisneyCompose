@@ -18,6 +18,7 @@ package com.skydoves.disneycompose.ui.posters
 
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ConstraintLayout
@@ -50,10 +51,14 @@ fun RadioPosters(
   selectPoster: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Column(modifier = modifier.statusBarsPadding()) {
+  Column(
+    modifier = modifier
+      .statusBarsPadding()
+      .background(MaterialTheme.colors.background)
+  ) {
     LazyColumnFor(
       items = posters,
-      contentPadding = PaddingValues(4.dp)
+      contentPadding = PaddingValues(4.dp),
     ) { poster ->
       RadioPoster(
         poster = poster,
