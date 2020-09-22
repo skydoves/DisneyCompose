@@ -51,7 +51,6 @@ import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.ui.theme.purple200
 import com.skydoves.disneycompose.utils.navigationBarsHeightPlus
 import com.skydoves.disneycompose.utils.navigationBarsPadding
-import timber.log.Timber
 
 @Composable
 fun Posters(
@@ -99,7 +98,6 @@ fun Posters(
         DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
       }
     }
-    Timber.d("isLoading: $isLoading")
     CircularProgressIndicator(
       modifier = Modifier.constrainAs(progress) {
         top.linkTo(parent.top)
