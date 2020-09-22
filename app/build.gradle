@@ -16,7 +16,7 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode
         versionName versions.versionName
-        testInstrumentationRunner "com.skydoves.pokedex.AppTestRunner"
+        testInstrumentationRunner "com.skydoves.disneycompose.AppTestRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -67,6 +67,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
     implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
     implementation "androidx.ui:ui-tooling:$versions.composeVersion"
+    androidTestImplementation "androidx.ui:ui-test:$versions.composeVersion"
 
     // architecture components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"

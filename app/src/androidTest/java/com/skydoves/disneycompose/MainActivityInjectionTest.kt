@@ -32,7 +32,7 @@ import org.junit.runner.RunWith
 class MainActivityInjectionTest {
 
   @get:Rule
-  var hiltRule = HiltAndroidRule(this)
+  val hiltRule = HiltAndroidRule(this)
 
   @Test
   fun verifyInjection() {
