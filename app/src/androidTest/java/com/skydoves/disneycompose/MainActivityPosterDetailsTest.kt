@@ -19,8 +19,9 @@ package com.skydoves.disneycompose
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.ui.test.assertIsDisplayed
 import androidx.ui.test.createAndroidComposeRule
-import androidx.ui.test.onAllNodesWithText
+import androidx.ui.test.onNodeWithText
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.main.MainActivity
 import com.skydoves.disneycompose.ui.navigation.Actions
@@ -54,7 +55,7 @@ class MainActivityPosterDetailsTest {
   }
 
   @Test
-  fun posterDetailsLoadingTest() {
+  fun posterDetailsFrozenIILoadingTest() {
     composeTestRule.setContent {
       DisneyComposeTheme {
         val navigator: Navigator<Destination> = rememberSavedInstanceState(
@@ -73,6 +74,29 @@ class MainActivityPosterDetailsTest {
       }
     }
 
-    composeTestRule.onAllNodesWithText("Frozen II", ignoreCase = true)
+    composeTestRule.onNodeWithText("Frozen II", ignoreCase = true).assertIsDisplayed()
+  }
+
+  @Test
+  fun posterDetailsZootopiaLoadingTest() {
+    composeTestRule.setContent {
+      DisneyComposeTheme {
+        val navigator: Navigator<Destination> = rememberSavedInstanceState(
+          saver = Navigator.saver(activity.onBackPressedDispatcher)
+        ) {
+          Navigator(Destination.Home, activity.onBackPressedDispatcher)
+        }
+        val actions = remember(navigator) { Actions(navigator) }
+
+        activity.viewModel.getPoster(2)
+
+        PosterDetails(
+          viewModel = activity.viewModel,
+          pressOnBack = actions.pressOnBack
+        )
+      }
+    }
+
+    composeTestRule.onNodeWithText("Zootopia", ignoreCase = true).assertIsDisplayed()
   }
 }
