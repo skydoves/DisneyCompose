@@ -16,17 +16,19 @@
 
 package com.skydoves.disneycompose.utils
 
+import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.chrisbanes.accompanist.coil.CoilImageWithCrossfade
+import com.skydoves.frescomposable.FrescoImage
 
 /**
- * A wrapper around [CoilImage] setting a default [contentScale] and loading indicator for loading disney poster images.
+ * A wrapper around [FrescoImage] setting a default [contentScale]
+ * and loading indicator for loading disney poster images.
  */
 @Composable
 fun NetworkImage(
@@ -34,8 +36,8 @@ fun NetworkImage(
   modifier: Modifier = Modifier,
   contentScale: ContentScale = ContentScale.Crop
 ) {
-  CoilImageWithCrossfade(
-    data = url,
+  FrescoImage(
+    imageUrl = url,
     modifier = modifier,
     contentScale = contentScale,
     loading = {
@@ -45,6 +47,23 @@ fun NetworkImage(
         val indicator = createRef()
         CircularProgressIndicator(
           modifier = Modifier.constrainAs(indicator) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+          }
+        )
+      }
+    },
+    failure = {
+      ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
+      ) {
+        val message = createRef()
+        Text(
+          text = "image request failed.",
+          style = MaterialTheme.typography.body2,
+          modifier = Modifier.constrainAs(message) {
             top.linkTo(parent.top)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
