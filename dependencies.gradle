@@ -1,61 +1,61 @@
 ext.versions = [
-    minSdk                : 21,
-    compileSdk            : 30,
-    versionCode           : 1,
-    versionName           : '1.0.0',
+    minSdk               : 21,
+    compileSdk           : 30,
+    versionCode          : 1,
+    versionName          : '1.0.0',
 
-    gradleBuildTool       : '4.2.0-alpha10',
-    spotlessGradle        : '5.6.0',
-    kotlin                : '1.4.10',
+    gradleBuildTool      : '4.2.0-alpha10',
+    spotlessGradle       : '5.6.0',
+    kotlin               : '1.4.10',
 
     // material
-    materialVersion       : '1.3.0-alpha02',
+    materialVersion      : '1.3.0-alpha02',
 
     // compose
-    composeVersion        : '1.0.0-alpha03',
+    composeVersion       : '1.0.0-alpha03',
 
     // androidx jetpack
-    constraintVersion     : '2.0.1',
-    coreKtx               : '1.5.0-alpha02',
+    constraintVersion    : '2.0.1',
+    coreKtx              : '1.5.0-alpha02',
 
     // architecture components
-    fragmentVersion       : '1.2.5',
-    lifecycleVersion      : '2.2.0',
-    roomVersion           : '2.2.5',
-    archCompomentVersion  : '2.1.0',
+    fragmentVersion      : '1.2.5',
+    lifecycleVersion     : '2.2.0',
+    roomVersion          : '2.2.5',
+    archCompomentVersion : '2.1.0',
 
     // startup
-    startupVersion        : '1.0.0-beta01',
+    startupVersion       : '1.0.0-beta01',
 
     // di
-    daggerHiltCoreVersion : '2.29.1-alpha',
-    daggerHiltVersion     : '1.0.0-alpha02',
+    daggerHiltCoreVersion: '2.29.1-alpha',
+    daggerHiltVersion    : '1.0.0-alpha02',
 
     // network
-    retrofitVersion       : '2.9.0',
-    okhttpVersion         : '4.7.2',
-    sandwichVersion       : '1.0.5',
+    retrofitVersion      : '2.9.0',
+    okhttpVersion        : '4.7.2',
+    sandwichVersion      : '1.0.5',
 
     // coroutines
-    coroutinesVersion     : '1.3.9',
+    coroutinesVersion    : '1.3.9',
 
-    // accompanist coil
-    accompanistCoilVersion: '0.2.2',
+    // fresco image loading
+    frescomposableVersion: '1.0.0',
 
     // whatIf
-    whatIfVersion         : '1.0.6',
+    whatIfVersion        : '1.0.6',
 
     // debugging
-    timberVersion         : '4.7.1',
+    timberVersion        : '4.7.1',
 
     // unit test
-    truthVersion          : '1.0.1',
-    junitVersion          : '4.12',
-    turbineVersion        : '0.2.0',
-    robolectricVersion    : '4.3.1',
-    androidxTest          : '1.3.0',
-    androidxTestJunit     : '1.1.2-rc01',
-    androidTestRunner     : '1.3.0-beta01',
-    mockitoKotlinVersion  : '2.2.0',
-    mockitoInlineVersion  : '3.3.3'
+    truthVersion         : '1.0.1',
+    junitVersion         : '4.12',
+    turbineVersion       : '0.2.0',
+    robolectricVersion   : '4.3.1',
+    androidxTest         : '1.3.0',
+    androidxTestJunit    : '1.1.2-rc01',
+    androidTestRunner    : '1.3.0-beta01',
+    mockitoKotlinVersion : '2.2.0',
+    mockitoInlineVersion : '3.3.3'
 ]

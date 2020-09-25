@@ -103,8 +103,8 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
 
-    // accompanist coil
-    implementation "dev.chrisbanes.accompanist:accompanist-coil:$versions.accompanistCoilVersion"
+    // fresco image loading
+    implementation "com.github.skydoves:frescomposable:$versions.frescomposableVersion"
 
     // whatIf
     implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
