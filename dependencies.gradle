@@ -19,7 +19,7 @@ ext.versions = [
 
     // androidx jetpack
     constraintVersion    : '2.0.1',
-    coreKtx              : '1.5.0-alpha02',
+    coreKtx              : '1.5.0-alpha03',
 
     // architecture components
     fragmentVersion      : '1.2.5',
