@@ -24,7 +24,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import com.skydoves.frescomposable.FrescoImage
+import com.skydoves.landscapist.fresco.FrescoImage
 
 /**
  * A wrapper around [FrescoImage] setting a default [contentScale]

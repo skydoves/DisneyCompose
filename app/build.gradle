@@ -28,7 +28,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
+        freeCompilerArgs += [
+            "-Xallow-jvm-ir-dependencies",
+            "-Xskip-prerelease-check",
+            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"]
         useIR = true
     }
     buildFeatures {
@@ -69,6 +72,9 @@ dependencies {
     implementation "androidx.ui:ui-tooling:$versions.composeVersion"
     androidTestImplementation "androidx.ui:ui-test:$versions.composeVersion"
 
+    // compose image loading
+    implementation "com.github.skydoves:landscapist-fresco:$versions.landscapistVersion"
+
     // architecture components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
@@ -102,9 +108,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
-
-    // fresco image loading
-    implementation "com.github.skydoves:frescomposable:$versions.frescomposableVersion"
 
     // whatIf
     implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
