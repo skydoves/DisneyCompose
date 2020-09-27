@@ -16,6 +16,7 @@ android {
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode
         versionName versions.versionName
+        multiDexEnabled true
         testInstrumentationRunner "com.skydoves.disneycompose.AppTestRunner"
     }
     compileOptions {
