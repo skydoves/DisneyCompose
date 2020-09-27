@@ -40,7 +40,7 @@ ext.versions = [
     coroutinesVersion    : '1.3.9',
 
     // fresco image loading
-    frescomposableVersion: '1.0.0',
+    frescomposableVersion: '1.0.1',
 
     // whatIf
     whatIfVersion        : '1.0.6',
