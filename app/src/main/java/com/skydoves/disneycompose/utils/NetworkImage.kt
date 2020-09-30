@@ -29,11 +29,13 @@ import com.skydoves.landscapist.fresco.FrescoImage
 /**
  * A wrapper around [FrescoImage] setting a default [contentScale]
  * and loading indicator for loading disney poster images.
+ *
+ * https://github.com/skydoves/landscapist
  */
 @Composable
 fun NetworkImage(
   url: String,
-  modifier: Modifier = Modifier,
+  modifier: Modifier,
   contentScale: ContentScale = ContentScale.Crop
 ) {
   FrescoImage(
