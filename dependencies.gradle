@@ -45,6 +45,9 @@ ext.versions = [
     // whatIf
     whatIfVersion        : '1.0.6',
 
+    // balloon
+    balloonVersion       : '1.2.3',
+
     // debugging
     timberVersion        : '4.7.1',
 
