@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.posters
 
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
@@ -88,21 +87,17 @@ fun LibraryPoster(
       ).padding(16.dp)
     ) {
       val (image, title, content) = createRefs()
-      Box(
+      NetworkImage(
+        url = poster.poster,
         modifier = Modifier.constrainAs(image) {
           centerHorizontallyTo(parent)
           top.linkTo(parent.top)
-        }.preferredHeight(112.dp),
-        shape = CircleShape
-      ) {
-        NetworkImage(
-          url = poster.poster,
-          modifier = Modifier
-            .aspectRatio(1.0f)
-            .fillMaxSize()
-            .clip(CircleShape)
-        )
-      }
+          bottom.linkTo(title.top)
+        }.preferredHeight(112.dp)
+          .aspectRatio(1.0f)
+          .fillMaxSize()
+          .clip(CircleShape)
+      )
       Text(
         text = poster.name,
         style = MaterialTheme.typography.h2,

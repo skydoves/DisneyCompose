@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.posters
 
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,6 +28,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -51,6 +51,7 @@ fun RadioPosters(
   selectPoster: (Long) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val listState = rememberLazyListState()
   Column(
     modifier = modifier
       .statusBarsPadding()
@@ -58,7 +59,8 @@ fun RadioPosters(
   ) {
     LazyColumnFor(
       items = posters,
-      contentPadding = PaddingValues(4.dp),
+      state = listState,
+      contentPadding = PaddingValues(4.dp)
     ) { poster ->
       RadioPoster(
         poster = poster,
@@ -90,21 +92,16 @@ fun RadioPoster(
       modifier = Modifier.padding(8.dp)
     ) {
       val (image, title, content) = createRefs()
-      Box(
+      NetworkImage(
         modifier = Modifier.constrainAs(image) {
           centerVerticallyTo(parent)
-        }.preferredHeight(64.dp),
-        shape = RoundedCornerShape(4.dp)
-      ) {
-        NetworkImage(
-          modifier = Modifier
-            .preferredHeight(64.dp)
-            .aspectRatio(1f)
-            .fillMaxSize()
-            .clip(RoundedCornerShape(4.dp)),
-          url = poster.poster
-        )
-      }
+          end.linkTo(title.start)
+        }.preferredHeight(64.dp)
+          .aspectRatio(1f)
+          .fillMaxSize()
+          .clip(RoundedCornerShape(4.dp)),
+        url = poster.poster
+      )
       Text(
         text = poster.name,
         style = MaterialTheme.typography.h2,
