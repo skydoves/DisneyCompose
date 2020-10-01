@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.details
 
-import android.view.View
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
@@ -30,22 +29,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.ripple.RippleIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.skydoves.disneycompose.model.Poster
-import com.skydoves.disneycompose.ui.custom.BalloonFactory
 import com.skydoves.disneycompose.ui.custom.BalloonTarget
 import com.skydoves.disneycompose.ui.main.MainViewModel
-import com.skydoves.disneycompose.ui.theme.purple500
 import com.skydoves.disneycompose.utils.NetworkImage
 
 @Composable
@@ -55,10 +48,6 @@ fun PosterDetails(
 ) {
   val details: Poster? by viewModel.posterDetails.observeAsState()
   details?.let { poster ->
-    val context = ContextAmbient.current
-    val lifecycleOwner = LifecycleOwnerAmbient.current
-    val view = remember { View(context) }
-    val balloon = remember { BalloonFactory.create(context, poster.name, lifecycleOwner) }
     ScrollableColumn(
       modifier = Modifier
         .background(MaterialTheme.colors.background)
@@ -97,15 +86,12 @@ fun PosterDetails(
             .clickable(onClick = { pressOnBack() })
         )
         BalloonTarget(
-          anchor = view,
+          reference = image,
           modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(0.85f)
-            .clickable(
-              onClick = { balloon.showAlignBottom(view) },
-              indication = RippleIndication(color = purple500)
-            ),
-          reference = image
+            .aspectRatio(0.85f),
+          content = poster.name,
+          onClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
         )
       }
     }
