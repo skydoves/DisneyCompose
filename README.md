@@ -1,7 +1,7 @@
 
 <h1 align="center">DisneyCompose</h1></br>
 <p align="center">  
-A demo Disney app using compose and Dagger-Hilt based on modern Android tech-stacks and MVVM architecture. Fetching data from the network and integrating persisted data in the database via repository pattern.<br> Declarative UI version of the <a href="https://github.com/skydoves/DisneyMotions" target="_blank"> DisneyMotions </a> using compose.
+A demo Disney app using compose and Hilt based on modern Android tech-stacks and MVVM architecture. Fetching data from the network and integrating persisted data in the database via repository pattern.<br> Declarative UI version of the <a href="https://github.com/skydoves/DisneyMotions" target="_blank"> DisneyMotions </a> using compose.
 </p>
 </br>
 
@@ -26,7 +26,7 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- Dagger-Hilt (alpha) for dependency injection.
+- Hilt (alpha) for dependency injection.
 - JetPack
   - Compose - A modern toolkit for building native Android UI.
   - LiveData - notify domain layer data to views.
