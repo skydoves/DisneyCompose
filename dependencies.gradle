@@ -17,6 +17,9 @@ ext.versions = [
     // compose image loading
     landscapistVersion   : '1.0.3',
 
+    // compose compatibles
+    orchestraVersion     : '1.0.0',
+
     // androidx jetpack
     constraintVersion    : '2.0.1',
     coreKtx              : '1.5.0-alpha03',

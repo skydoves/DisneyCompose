@@ -51,6 +51,17 @@ android {
             returnDefaultValues = true
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
 }
 
 dependencies {
@@ -74,6 +85,9 @@ dependencies {
 
     // compose image loading
     implementation "com.github.skydoves:landscapist-fresco:$versions.landscapistVersion"
+
+    // compose compatibles
+    implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
 
     // architecture components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
