@@ -37,7 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.skydoves.disneycompose.model.Poster
-import com.skydoves.disneycompose.ui.custom.BalloonTarget
+import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
 import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.utils.NetworkImage
 
@@ -85,7 +85,7 @@ fun PosterDetails(
           }.padding(12.dp)
             .clickable(onClick = { pressOnBack() })
         )
-        BalloonTarget(
+        ImageBalloonAnchor(
           reference = image,
           modifier = Modifier
             .fillMaxWidth()
