@@ -15,7 +15,7 @@ ext.versions = [
     composeVersion       : '1.0.0-alpha04',
 
     // compose image loading
-    landscapistVersion   : '1.0.2',
+    landscapistVersion   : '1.0.3',
 
     // androidx jetpack
     constraintVersion    : '2.0.1',
