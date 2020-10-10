@@ -43,6 +43,7 @@ fun NetworkImage(
     modifier = modifier,
     contentScale = contentScale,
     circularRevealedEnabled = true,
+    circularRevealedDuration = 700,
     loading = {
       ConstraintLayout(
         modifier = Modifier.fillMaxSize()
