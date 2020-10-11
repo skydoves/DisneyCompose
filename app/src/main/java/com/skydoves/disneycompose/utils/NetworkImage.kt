@@ -44,7 +44,7 @@ fun NetworkImage(
     modifier = modifier,
     contentScale = contentScale,
     circularRevealedEnabled = true,
-    circularRevealedDuration = 700,
+    circularRevealedDuration = 450,
     shimmerParams = ShimmerParams(
       baseColor = MaterialTheme.colors.background,
       highlightColor = shimmerHighLight,
