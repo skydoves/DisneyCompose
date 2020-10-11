@@ -38,7 +38,7 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
   - MVVM Architecture (Declarative View - ViewModel - Model)
   - Repository pattern
 - Material Design & Animations
-- [Landscapist](https://github.com/skydoves/landscapist) - Glide/Fresco image loading composable.
+- [Landscapist](https://github.com/skydoves/landscapist) - Jetpack Compose image loading library with shimmer & circular reveal animations.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight http API response and handling error responses.
 - [WhatIf](https://github.com/skydoves/whatif) - checking nullable object and empty collections more fluently.

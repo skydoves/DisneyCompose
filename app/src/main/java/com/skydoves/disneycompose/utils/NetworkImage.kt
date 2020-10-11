@@ -19,11 +19,12 @@ package com.skydoves.disneycompose.utils
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import com.skydoves.disneycompose.ui.theme.shimmerHighLight
+import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.fresco.FrescoImage
 
 /**
@@ -44,21 +45,11 @@ fun NetworkImage(
     contentScale = contentScale,
     circularRevealedEnabled = true,
     circularRevealedDuration = 700,
-    loading = {
-      ConstraintLayout(
-        modifier = Modifier.fillMaxSize()
-      ) {
-        val indicator = createRef()
-        CircularProgressIndicator(
-          modifier = Modifier.constrainAs(indicator) {
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-          }
-        )
-      }
-    },
+    shimmerParams = ShimmerParams(
+      baseColor = MaterialTheme.colors.background,
+      highlightColor = shimmerHighLight,
+      dropOff = 0.65f
+    ),
     failure = {
       ConstraintLayout(
         modifier = Modifier.fillMaxSize()
