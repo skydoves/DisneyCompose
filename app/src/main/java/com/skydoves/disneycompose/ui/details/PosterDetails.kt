@@ -59,7 +59,8 @@ fun PosterDetails(
           url = poster.poster,
           modifier = Modifier.constrainAs(image) {
             top.linkTo(parent.top)
-          }.fillMaxWidth().aspectRatio(0.85f)
+          }.fillMaxWidth().aspectRatio(0.85f),
+          circularRevealedEnabled = true
         )
         Text(
           text = poster.name,

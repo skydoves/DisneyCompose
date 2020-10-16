@@ -37,13 +37,14 @@ import com.skydoves.landscapist.fresco.FrescoImage
 fun NetworkImage(
   url: String,
   modifier: Modifier,
+  circularRevealedEnabled: Boolean = false,
   contentScale: ContentScale = ContentScale.Crop
 ) {
   FrescoImage(
     imageUrl = url,
     modifier = modifier,
     contentScale = contentScale,
-    circularRevealedEnabled = true,
+    circularRevealedEnabled = circularRevealedEnabled,
     circularRevealedDuration = 450,
     shimmerParams = ShimmerParams(
       baseColor = MaterialTheme.colors.background,

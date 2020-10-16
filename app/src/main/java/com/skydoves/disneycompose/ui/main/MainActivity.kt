@@ -18,15 +18,15 @@ package com.skydoves.disneycompose.ui.main
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.setContent
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
   @VisibleForTesting val viewModel: MainViewModel by viewModels()
 
