@@ -17,9 +17,9 @@
 package com.skydoves.disneycompose.ui.posters
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.contentColor
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
@@ -84,8 +84,8 @@ fun Posters(
               selected = tab == selectedTab,
               onClick = { setSelectedTab(tab) },
               alwaysShowLabels = false,
-              selectedContentColor = contentColor(),
-              unselectedContentColor = contentColor(),
+              selectedContentColor = AmbientContentColor.current,
+              unselectedContentColor = AmbientContentColor.current,
               modifier = Modifier.navigationBarsPadding()
             )
           }
