@@ -15,7 +15,7 @@ ext.versions = [
     composeVersion       : '1.0.0-alpha05',
 
     // compose image loading
-    landscapistVersion   : '1.0.6',
+    landscapistVersion   : '1.0.7',
 
     // compose compatibles
     orchestraVersion     : '1.0.0',
