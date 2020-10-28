@@ -125,8 +125,6 @@ dependencies {
     // whatIf
     implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
 
-    implementation "com.github.skydoves:balloon:$versions.balloonVersion"
-
     // logging
     implementation "com.jakewharton.timber:timber:$versions.timberVersion"
 
