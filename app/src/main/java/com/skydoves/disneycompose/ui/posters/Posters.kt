@@ -17,8 +17,8 @@
 package com.skydoves.disneycompose.ui.posters
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.AmbientContentColor
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.padding
@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
@@ -63,6 +64,7 @@ fun Posters(
   val posters: List<Poster> by viewModel.posterList.observeAsState(listOf())
   val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
   val tabs = DisneyHomeTab.values()
+
   ConstraintLayout {
     val (body, progress) = createRefs()
     Scaffold(
@@ -93,20 +95,22 @@ fun Posters(
       }
     ) { innerPadding ->
       val modifier = Modifier.padding(innerPadding)
-      when (selectedTab) {
-        DisneyHomeTab.HOME -> HomePosters(posters, selectPoster, modifier)
-        DisneyHomeTab.RADIO -> RadioPosters(posters, selectPoster, modifier)
-        DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
+      Crossfade(selectedTab) { destination ->
+        when (destination) {
+          DisneyHomeTab.HOME -> HomePosters(posters, selectPoster, modifier)
+          DisneyHomeTab.RADIO -> RadioPosters(posters, selectPoster, modifier)
+          DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
+        }
       }
+      CircularProgressIndicator(
+        modifier = Modifier.constrainAs(progress) {
+          top.linkTo(parent.top)
+          bottom.linkTo(parent.bottom)
+          start.linkTo(parent.start)
+          end.linkTo(parent.end)
+        }.visible(isLoading)
+      )
     }
-    CircularProgressIndicator(
-      modifier = Modifier.constrainAs(progress) {
-        top.linkTo(parent.top)
-        bottom.linkTo(parent.bottom)
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-      }.visible(isLoading)
-    )
   }
 }
 
