@@ -16,17 +16,12 @@
 
 package com.skydoves.disneycompose
 
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.ui.test.assertIsDisplayed
 import androidx.ui.test.createAndroidComposeRule
 import androidx.ui.test.onNodeWithText
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.main.MainActivity
-import com.skydoves.disneycompose.ui.navigation.Actions
-import com.skydoves.disneycompose.ui.navigation.Navigator
-import com.skydoves.disneycompose.ui.navigation.Screen
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -58,18 +53,12 @@ class MainActivityPosterDetailsTest {
   fun posterDetailsFrozenIILoadingTest() {
     composeTestRule.setContent {
       DisneyComposeTheme {
-        val navigator: Navigator<Screen> = rememberSavedInstanceState(
-          saver = Navigator.saver(activity.onBackPressedDispatcher)
-        ) {
-          Navigator(Screen.Home, activity.onBackPressedDispatcher)
-        }
-        val actions = remember(navigator) { Actions(navigator) }
 
         activity.viewModel.getPoster(0)
 
         PosterDetails(
           viewModel = activity.viewModel,
-          pressOnBack = actions.pressOnBack
+          pressOnBack = {}
         )
       }
     }
@@ -81,18 +70,9 @@ class MainActivityPosterDetailsTest {
   fun posterDetailsZootopiaLoadingTest() {
     composeTestRule.setContent {
       DisneyComposeTheme {
-        val navigator: Navigator<Screen> = rememberSavedInstanceState(
-          saver = Navigator.saver(activity.onBackPressedDispatcher)
-        ) {
-          Navigator(Screen.Home, activity.onBackPressedDispatcher)
-        }
-        val actions = remember(navigator) { Actions(navigator) }
-
-        activity.viewModel.getPoster(2)
-
         PosterDetails(
           viewModel = activity.viewModel,
-          pressOnBack = actions.pressOnBack
+          pressOnBack = {}
         )
       }
     }
