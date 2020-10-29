@@ -16,51 +16,63 @@
 
 package com.skydoves.disneycompose.ui.main
 
-import androidx.activity.OnBackPressedDispatcher
-import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.skydoves.disneycompose.ui.details.PosterDetails
-import com.skydoves.disneycompose.ui.navigation.Actions
-import com.skydoves.disneycompose.ui.navigation.BackDispatcherAmbient
-import com.skydoves.disneycompose.ui.navigation.Destination
-import com.skydoves.disneycompose.ui.navigation.Navigator
 import com.skydoves.disneycompose.ui.posters.DisneyHomeTab
 import com.skydoves.disneycompose.ui.posters.Posters
 import com.skydoves.disneycompose.utils.ProvideDisplayInsets
 
 @Composable
-fun DisneyMain(viewModel: MainViewModel, backDispatcher: OnBackPressedDispatcher) {
-  val navigator: Navigator<Destination> = rememberSavedInstanceState(
-    saver = Navigator.saver(backDispatcher)
-  ) {
-    Navigator(Destination.Home, backDispatcher)
-  }
-  val actions = remember(navigator) { Actions(navigator) }
+fun DisneyMain(viewModel: MainViewModel) {
+  val navController = rememberNavController()
   val (selectedTab, setSelectedTab) = remember { mutableStateOf(DisneyHomeTab.HOME) }
 
-  Providers(BackDispatcherAmbient provides backDispatcher) {
-    ProvideDisplayInsets {
-      Crossfade(navigator.current) { destination ->
-        when (destination) {
-          Destination.Home -> Posters(
-            viewModel = viewModel,
-            selectPoster = actions.selectOnPoster,
-            selectedTab = selectedTab,
-            setSelectedTab = setSelectedTab
-          )
-          is Destination.PosterDetail -> {
-            viewModel.getPoster(destination.posterId)
-            PosterDetails(
-              viewModel = viewModel,
-              pressOnBack = actions.pressOnBack
-            )
-          }
+  ProvideDisplayInsets {
+    NavHost(navController = navController, startDestination = NavScreen.Home.route) {
+      composable(NavScreen.Home.route) {
+        Posters(
+          viewModel = viewModel,
+          selectPoster = {
+            navController.navigate("${NavScreen.PosterDetails.route}/$it")
+          },
+          selectedTab = selectedTab,
+          setSelectedTab = setSelectedTab
+        )
+      }
+      composable(
+        route = NavScreen.PosterDetails.routeWithArgument,
+        arguments = listOf(
+          navArgument(NavScreen.PosterDetails.argument0) { type = NavType.LongType }
+        )
+      ) {
+        val posterId = it.arguments?.getLong(NavScreen.PosterDetails.argument0) ?: return@composable
+
+        viewModel.getPoster(posterId)
+
+        PosterDetails(viewModel = viewModel) {
+          navController.popBackStack(navController.graph.startDestination, false)
         }
       }
     }
+  }
+}
+
+sealed class NavScreen(val route: String) {
+
+  object Home : NavScreen("Home")
+
+  object PosterDetails : NavScreen("PosterDetails") {
+
+    const val routeWithArgument: String = "PosterDetails/{posterId}"
+
+    const val argument0: String = "posterId"
   }
 }

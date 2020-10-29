@@ -45,6 +45,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.KEY_ROUTE
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.skydoves.disneycompose.R
 import com.skydoves.disneycompose.extensions.visible
 import com.skydoves.disneycompose.model.Poster
@@ -63,6 +66,8 @@ fun Posters(
   val posters: List<Poster> by viewModel.posterList.observeAsState(listOf())
   val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
   val tabs = DisneyHomeTab.values()
+  val navController = rememberNavController()
+
   ConstraintLayout {
     val (body, progress) = createRefs()
     Scaffold(
@@ -77,6 +82,8 @@ fun Posters(
           modifier = Modifier
             .navigationBarsHeightPlus(56.dp)
         ) {
+          val navBackStackEntry by navController.currentBackStackEntryAsState()
+          val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
           tabs.forEach { tab ->
             BottomNavigationItem(
               icon = { Icon(asset = tab.icon) },

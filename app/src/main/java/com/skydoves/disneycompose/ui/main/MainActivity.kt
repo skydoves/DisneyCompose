@@ -44,10 +44,7 @@ class MainActivity : ComponentActivity() {
     // set disney contents.
     setContent {
       DisneyComposeTheme {
-        DisneyMain(
-          viewModel = viewModel,
-          backDispatcher = onBackPressedDispatcher
-        )
+        DisneyMain(viewModel = viewModel)
       }
     }
   }

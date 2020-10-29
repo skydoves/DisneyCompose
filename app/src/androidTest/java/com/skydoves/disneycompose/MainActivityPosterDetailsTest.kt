@@ -25,8 +25,8 @@ import androidx.ui.test.onNodeWithText
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.main.MainActivity
 import com.skydoves.disneycompose.ui.navigation.Actions
-import com.skydoves.disneycompose.ui.navigation.Destination
 import com.skydoves.disneycompose.ui.navigation.Navigator
+import com.skydoves.disneycompose.ui.navigation.Screen
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -58,10 +58,10 @@ class MainActivityPosterDetailsTest {
   fun posterDetailsFrozenIILoadingTest() {
     composeTestRule.setContent {
       DisneyComposeTheme {
-        val navigator: Navigator<Destination> = rememberSavedInstanceState(
+        val navigator: Navigator<Screen> = rememberSavedInstanceState(
           saver = Navigator.saver(activity.onBackPressedDispatcher)
         ) {
-          Navigator(Destination.Home, activity.onBackPressedDispatcher)
+          Navigator(Screen.Home, activity.onBackPressedDispatcher)
         }
         val actions = remember(navigator) { Actions(navigator) }
 
@@ -81,10 +81,10 @@ class MainActivityPosterDetailsTest {
   fun posterDetailsZootopiaLoadingTest() {
     composeTestRule.setContent {
       DisneyComposeTheme {
-        val navigator: Navigator<Destination> = rememberSavedInstanceState(
+        val navigator: Navigator<Screen> = rememberSavedInstanceState(
           saver = Navigator.saver(activity.onBackPressedDispatcher)
         ) {
-          Navigator(Destination.Home, activity.onBackPressedDispatcher)
+          Navigator(Screen.Home, activity.onBackPressedDispatcher)
         }
         val actions = remember(navigator) { Actions(navigator) }
 
