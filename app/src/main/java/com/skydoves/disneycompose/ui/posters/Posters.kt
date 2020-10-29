@@ -102,15 +102,15 @@ fun Posters(
           DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
         }
       }
-      CircularProgressIndicator(
-        modifier = Modifier.constrainAs(progress) {
-          top.linkTo(parent.top)
-          bottom.linkTo(parent.bottom)
-          start.linkTo(parent.start)
-          end.linkTo(parent.end)
-        }.visible(isLoading)
-      )
     }
+    CircularProgressIndicator(
+      modifier = Modifier.constrainAs(progress) {
+        top.linkTo(parent.top)
+        bottom.linkTo(parent.bottom)
+        start.linkTo(parent.start)
+        end.linkTo(parent.end)
+      }.visible(isLoading)
+    )
   }
 }
 
