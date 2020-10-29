@@ -38,9 +38,6 @@ class MainActivity : ComponentActivity() {
       Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
     }
 
-    // fetch disney posters.
-    viewModel.fetchDisneyPosterList()
-
     // set disney contents.
     setContent {
       DisneyComposeTheme {

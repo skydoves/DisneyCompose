@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.main
 
-import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -34,7 +33,7 @@ class MainViewModel @ViewModelInject constructor(
   private val detailRepository: DetailRepository
 ) : LiveCoroutinesViewModel() {
 
-  private var _posterList: MutableLiveData<Boolean> = MutableLiveData()
+  private var _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
   val posterList: LiveData<List<Poster>>
 
   private var _posterDetails: LiveData<Poster> = MutableLiveData()
@@ -58,11 +57,6 @@ class MainViewModel @ViewModelInject constructor(
         ).asLiveData()
       }
     }
-  }
-
-  @MainThread
-  fun fetchDisneyPosterList() {
-    _posterList.value = true
   }
 
   @WorkerThread
