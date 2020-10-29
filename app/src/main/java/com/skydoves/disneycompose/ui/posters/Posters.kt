@@ -17,6 +17,7 @@
 package com.skydoves.disneycompose.ui.posters
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.AmbientContentColor
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ConstraintLayout
@@ -100,20 +101,22 @@ fun Posters(
       }
     ) { innerPadding ->
       val modifier = Modifier.padding(innerPadding)
-      when (selectedTab) {
-        DisneyHomeTab.HOME -> HomePosters(posters, selectPoster, modifier)
-        DisneyHomeTab.RADIO -> RadioPosters(posters, selectPoster, modifier)
-        DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
+      Crossfade(selectedTab) { destination ->
+        when (destination) {
+          DisneyHomeTab.HOME -> HomePosters(posters, selectPoster, modifier)
+          DisneyHomeTab.RADIO -> RadioPosters(posters, selectPoster, modifier)
+          DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
+        }
       }
+      CircularProgressIndicator(
+        modifier = Modifier.constrainAs(progress) {
+          top.linkTo(parent.top)
+          bottom.linkTo(parent.bottom)
+          start.linkTo(parent.start)
+          end.linkTo(parent.end)
+        }.visible(isLoading)
+      )
     }
-    CircularProgressIndicator(
-      modifier = Modifier.constrainAs(progress) {
-        top.linkTo(parent.top)
-        bottom.linkTo(parent.bottom)
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-      }.visible(isLoading)
-    )
   }
 }
 
