@@ -5,15 +5,15 @@ ext.versions = [
     versionName         : '1.0.1',
 
     gradleBuildTool     : '4.2.0-alpha16',
-    spotlessGradle      : '5.7.0',
+    spotlessGradle      : '5.8.0',
     kotlin              : '1.4.10',
 
     // material
     materialVersion     : '1.3.0-alpha03',
 
     // compose
-    composeVersion      : '1.0.0-alpha06',
-    composeNavVersion   : '1.0.0-alpha01',
+    composeVersion      : '1.0.0-alpha07',
+    composeNavVersion   : '1.0.0-alpha02',
 
     // compose image loading
     landscapistVersion  : '1.0.8',
