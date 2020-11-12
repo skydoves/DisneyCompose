@@ -18,17 +18,17 @@ package com.skydoves.disneycompose.ui.posters
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.AmbientContentColor
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -38,6 +38,8 @@ import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -57,12 +59,12 @@ import com.skydoves.disneycompose.utils.navigationBarsPadding
 @Composable
 fun Posters(
   viewModel: MainViewModel,
-  selectPoster: (Long) -> Unit,
-  selectedTab: DisneyHomeTab,
-  setSelectedTab: (DisneyHomeTab) -> Unit
+  selectPoster: (Long) -> Unit
 ) {
   val posters: List<Poster> by viewModel.posterList.observeAsState(listOf())
   val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
+
+  val (selectedTab, setSelectedTab) = remember { mutableStateOf(DisneyHomeTab.HOME) }
   val tabs = DisneyHomeTab.values()
 
   ConstraintLayout {

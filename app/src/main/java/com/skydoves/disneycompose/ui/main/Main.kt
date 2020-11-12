@@ -17,8 +17,6 @@
 package com.skydoves.disneycompose.ui.main
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,14 +24,12 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.skydoves.disneycompose.ui.details.PosterDetails
-import com.skydoves.disneycompose.ui.posters.DisneyHomeTab
 import com.skydoves.disneycompose.ui.posters.Posters
 import com.skydoves.disneycompose.utils.ProvideDisplayInsets
 
 @Composable
 fun DisneyMain(viewModel: MainViewModel) {
   val navController = rememberNavController()
-  val (selectedTab, setSelectedTab) = remember { mutableStateOf(DisneyHomeTab.HOME) }
 
   ProvideDisplayInsets {
     NavHost(navController = navController, startDestination = NavScreen.Home.route) {
@@ -42,9 +38,7 @@ fun DisneyMain(viewModel: MainViewModel) {
           viewModel = viewModel,
           selectPoster = {
             navController.navigate("${NavScreen.PosterDetails.route}/$it")
-          },
-          selectedTab = selectedTab,
-          setSelectedTab = setSelectedTab
+          }
         )
       }
       composable(

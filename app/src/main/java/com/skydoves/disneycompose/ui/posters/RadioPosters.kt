@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.posters
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -32,11 +31,14 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.ripple.RippleIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.skydoves.disneycompose.model.Poster
@@ -103,13 +105,14 @@ fun RadioPoster(
         url = poster.poster
       )
       Text(
-        text = poster.name,
-        style = MaterialTheme.typography.h2,
-        overflow = TextOverflow.Ellipsis,
-        maxLines = 1,
-        modifier = Modifier.constrainAs(title) {
+        poster.name,
+        Modifier.constrainAs(title) {
           start.linkTo(image.end)
-        }.padding(horizontal = 12.dp)
+        }.padding(horizontal = 12.dp),
+        Color.Unspecified, TextUnit.Inherit, null, null, null, TextUnit.Inherit, null, null,
+        TextUnit.Inherit, TextOverflow.Ellipsis,
+        true, 1,
+        {}, MaterialTheme.typography.h2
       )
       Text(
         text = poster.playtime,
