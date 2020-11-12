@@ -16,10 +16,10 @@ ext.versions = [
     composeNavVersion   : '1.0.0-alpha02',
 
     // compose image loading
-    landscapistVersion  : '1.0.8',
+    landscapistVersion  : '1.0.9',
 
     // compose compatibles
-    orchestraVersion    : '1.0.0',
+    orchestraVersion    : '1.0.1',
 
     // androidx jetpack
     constraintVersion   : '2.0.2',
@@ -48,9 +48,6 @@ ext.versions = [
 
     // whatIf
     whatIfVersion       : '1.0.7',
-
-    // balloon
-    balloonVersion      : '1.2.4',
 
     // debugging
     timberVersion       : '4.7.1',
