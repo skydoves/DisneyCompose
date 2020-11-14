@@ -38,8 +38,6 @@ import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -63,8 +61,7 @@ fun Posters(
 ) {
   val posters: List<Poster> by viewModel.posterList.observeAsState(listOf())
   val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
-
-  val (selectedTab, setSelectedTab) = remember { mutableStateOf(DisneyHomeTab.HOME) }
+  val selectedTab = DisneyHomeTab.getTabFromResource(viewModel.selectedTab.value)
   val tabs = DisneyHomeTab.values()
 
   ConstraintLayout {
@@ -86,7 +83,7 @@ fun Posters(
               icon = { Icon(asset = tab.icon) },
               label = { Text(text = stringResource(tab.title), color = Color.White) },
               selected = tab == selectedTab,
-              onClick = { setSelectedTab(tab) },
+              onClick = { viewModel.selectTab(tab.title) },
               alwaysShowLabels = false,
               selectedContentColor = AmbientContentColor.current,
               unselectedContentColor = AmbientContentColor.current,
@@ -141,5 +138,15 @@ enum class DisneyHomeTab(
 ) {
   HOME(R.string.menu_home, Icons.Filled.Home),
   RADIO(R.string.menu_radio, Icons.Filled.Radio),
-  LIBRARY(R.string.menu_library, Icons.Filled.LibraryAdd),
+  LIBRARY(R.string.menu_library, Icons.Filled.LibraryAdd);
+
+  companion object {
+    fun getTabFromResource(@StringRes resource: Int): DisneyHomeTab {
+      return when (resource) {
+        R.string.menu_radio -> RADIO
+        R.string.menu_library -> LIBRARY
+        else -> HOME
+      }
+    }
+  }
 }

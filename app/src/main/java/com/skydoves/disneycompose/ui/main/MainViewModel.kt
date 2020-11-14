@@ -16,7 +16,12 @@
 
 package com.skydoves.disneycompose.ui.main
 
+import androidx.annotation.MainThread
+import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -42,6 +47,9 @@ class MainViewModel @ViewModelInject constructor(
   private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
   val isLoading: LiveData<Boolean> get() = _isLoading
 
+  private val _selectedTab: MutableState<Int> = mutableStateOf(0)
+  val selectedTab: State<Int> get() = _selectedTab
+
   private val _toast: MutableLiveData<String> = MutableLiveData()
   val toast: LiveData<String> get() = _toast
 
@@ -62,5 +70,10 @@ class MainViewModel @ViewModelInject constructor(
   @WorkerThread
   fun getPoster(id: Long) {
     _posterDetails = detailRepository.getPosterById(id)
+  }
+
+  @MainThread
+  fun selectTab(@StringRes tab: Int) {
+    _selectedTab.value = tab
   }
 }
