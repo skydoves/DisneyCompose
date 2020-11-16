@@ -33,7 +33,7 @@
         tools:node="merge">
 
       <meta-data
-          android:name="com.skydoves.disneycompose.initializer.FrescoInitializer"
+          android:name="com.skydoves.disneycompose.initializer.TimberInitializer"
           android:value="androidx.startup" />
     </provider>
   </application>

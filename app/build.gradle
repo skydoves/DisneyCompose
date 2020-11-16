@@ -84,7 +84,7 @@ dependencies {
     androidTestImplementation "androidx.ui:ui-test:$versions.composeVersion"
 
     // compose image loading
-    implementation "com.github.skydoves:landscapist-fresco:$versions.landscapistVersion"
+    implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"
 
     // compose compatibles
     implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
