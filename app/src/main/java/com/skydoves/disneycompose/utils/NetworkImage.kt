@@ -23,13 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.skydoves.disneycompose.ui.theme.shimmerHighLight
 import com.skydoves.landscapist.ShimmerParams
-import com.skydoves.landscapist.fresco.FrescoImage
+import com.skydoves.landscapist.coil.CoilImage
 
 /**
- * A wrapper around [FrescoImage] setting a default [contentScale]
- * and loading indicator for loading disney poster images.
+ * A wrapper around [CoilImage] setting a default [contentScale] and showing
+ * an indicator when loading disney poster images.
  *
- * @see FrescoImage https://github.com/skydoves/landscapist
+ * @see CoilImage https://github.com/skydoves/landscapist#coil
  */
 @Composable
 fun NetworkImage(
@@ -38,8 +38,8 @@ fun NetworkImage(
   circularRevealedEnabled: Boolean = false,
   contentScale: ContentScale = ContentScale.Crop
 ) {
-  FrescoImage(
-    imageUrl = url,
+  CoilImage(
+    imageModel = url,
     modifier = modifier,
     contentScale = contentScale,
     circularRevealedEnabled = circularRevealedEnabled,

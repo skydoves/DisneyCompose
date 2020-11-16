@@ -16,12 +16,16 @@
 
 package com.skydoves.disneycompose.di
 
+import android.content.Context
+import coil.ImageLoader
+import coil.util.CoilUtils
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.network.RequestInterceptor
 import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -34,9 +38,21 @@ object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient(): OkHttpClient {
+  fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
     return OkHttpClient.Builder()
       .addInterceptor(RequestInterceptor())
+      .cache(CoilUtils.createDefaultCache(context))
+      .build()
+  }
+
+  @Provides
+  @Singleton
+  fun provideImageLoader(
+    @ApplicationContext context: Context,
+    okHttpClient: OkHttpClient
+  ): ImageLoader {
+    return ImageLoader.Builder(context)
+      .okHttpClient { okHttpClient }
       .build()
   }
 
