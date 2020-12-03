@@ -6,17 +6,18 @@ ext.versions = [
 
     gradleBuildTool     : '4.2.0-alpha16',
     spotlessGradle      : '5.8.0',
-    kotlin              : '1.4.10',
+    kotlin              : '1.4.20',
 
     // material
     materialVersion     : '1.3.0-alpha03',
 
     // compose
-    composeVersion      : '1.0.0-alpha07',
+    composeVersion      : '1.0.0-alpha08',
+    compostToolVersion  : '1.0.0-alpha07',
     composeNavVersion   : '1.0.0-alpha02',
 
     // compose image loading
-    landscapistVersion  : '1.1.0',
+    landscapistVersion  : '1.1.1',
 
     // compose compatibles
     orchestraVersion    : '1.0.1',
