@@ -16,15 +16,12 @@
 
 package com.skydoves.disneycompose.model
 
-import android.os.Parcelable
 import androidx.compose.runtime.Immutable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
 
 @Entity
 @Immutable
-@Parcelize
 data class Poster(
   @PrimaryKey val id: Long,
   val name: String,
@@ -33,7 +30,7 @@ data class Poster(
   val description: String,
   val plot: String,
   val poster: String
-) : Parcelable {
+) {
 
   companion object {
 
