@@ -19,12 +19,12 @@ package com.skydoves.disneycompose.ui.custom
 import android.view.View
 import androidx.compose.foundation.layout.ConstrainedLayoutReference
 import androidx.compose.foundation.layout.ConstraintLayoutScope
-import androidx.compose.material.ripple.RippleIndication
+import androidx.compose.material.ripple.rememberRippleIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
+import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.AmbientLifecycleOwner
 import com.skydoves.balloon.Balloon
 import com.skydoves.disneycompose.ui.theme.purple500
 import com.skydoves.orchestra.balloon.BalloonAnchor
@@ -36,8 +36,8 @@ fun ConstraintLayoutScope.ImageBalloonAnchor(
   content: String,
   onClick: (Balloon, View) -> Unit
 ) {
-  val context = ContextAmbient.current
-  val lifecycleOwner = LifecycleOwnerAmbient.current
+  val context = AmbientContext.current
+  val lifecycleOwner = AmbientLifecycleOwner.current
   val balloon = remember { BalloonFactory.create(context, content, lifecycleOwner) }
 
   BalloonAnchor(
@@ -45,6 +45,6 @@ fun ConstraintLayoutScope.ImageBalloonAnchor(
     modifier = modifier,
     balloon = balloon,
     onAnchorClick = onClick,
-    onClickIndication = RippleIndication(color = purple500)
+    onClickIndication = rememberRippleIndication(color = purple500)
   )
 }

@@ -79,7 +79,7 @@ fun PosterDetails(
           }.padding(16.dp)
         )
         Icon(
-          asset = Icons.Filled.ArrowBack,
+          imageVector = Icons.Filled.ArrowBack,
           tint = Color.White,
           modifier = Modifier.constrainAs(arrow) {
             top.linkTo(parent.top)

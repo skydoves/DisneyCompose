@@ -27,14 +27,14 @@ import androidx.navigation.compose.rememberNavController
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.posters.Posters
 import com.skydoves.disneycompose.utils.ProvideDisplayInsets
-import com.skydoves.landscapist.coil.CoilImageLoaderAmbient
+import com.skydoves.landscapist.coil.AmbientCoilImageLoader
 
 @Composable
 fun DisneyMain(viewModel: MainViewModel) {
   val navController = rememberNavController()
 
   ProvideDisplayInsets {
-    Providers(CoilImageLoaderAmbient provides viewModel.imageLoader) {
+    Providers(AmbientCoilImageLoader provides viewModel.imageLoader) {
       NavHost(navController = navController, startDestination = NavScreen.Home.route) {
         composable(NavScreen.Home.route) {
           Posters(

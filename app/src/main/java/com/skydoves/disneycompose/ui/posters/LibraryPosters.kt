@@ -30,7 +30,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.RippleIndication
+import androidx.compose.material.ripple.rememberRippleIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -83,7 +83,7 @@ fun LibraryPoster(
     ConstraintLayout(
       modifier = Modifier.clickable(
         onClick = { selectPoster(poster.id) },
-        indication = RippleIndication(color = purple500)
+        indication = rememberRippleIndication(color = purple500)
       ).padding(16.dp)
     ) {
       val (image, title, content) = createRefs()

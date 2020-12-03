@@ -32,7 +32,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.RippleIndication
+import androidx.compose.material.ripple.rememberRippleIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -84,7 +84,7 @@ fun RadioPoster(
       .padding(4.dp)
       .clickable(
         onClick = { selectPoster(poster.id) },
-        indication = RippleIndication(color = purple500)
+        indication = rememberRippleIndication(color = purple500)
       ),
     color = MaterialTheme.colors.onBackground,
     elevation = 8.dp,
@@ -109,8 +109,8 @@ fun RadioPoster(
         Modifier.constrainAs(title) {
           start.linkTo(image.end)
         }.padding(horizontal = 12.dp),
-        Color.Unspecified, TextUnit.Inherit, null, null, null, TextUnit.Inherit, null, null,
-        TextUnit.Inherit, TextOverflow.Ellipsis,
+        Color.Unspecified, TextUnit.Unspecified, null, null, null, TextUnit.Unspecified, null, null,
+        TextUnit.Unspecified, TextOverflow.Ellipsis,
         true, 1,
         {}, MaterialTheme.typography.h2
       )

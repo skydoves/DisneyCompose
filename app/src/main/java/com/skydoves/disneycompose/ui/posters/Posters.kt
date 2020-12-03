@@ -41,7 +41,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -80,7 +80,7 @@ fun Posters(
         ) {
           tabs.forEach { tab ->
             BottomNavigationItem(
-              icon = { Icon(asset = tab.icon) },
+              icon = { Icon(imageVector = tab.icon) },
               label = { Text(text = stringResource(tab.title), color = Color.White) },
               selected = tab == selectedTab,
               onClick = { viewModel.selectTab(tab.title) },
@@ -134,7 +134,7 @@ fun PosterAppBar() {
 
 enum class DisneyHomeTab(
   @StringRes val title: Int,
-  val icon: VectorAsset
+  val icon: ImageVector
 ) {
   HOME(R.string.menu_home, Icons.Filled.Home),
   RADIO(R.string.menu_radio, Icons.Filled.Radio),
