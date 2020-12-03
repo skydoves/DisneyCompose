@@ -35,7 +35,7 @@ import androidx.compose.ui.layout.LayoutModifier
 import androidx.compose.ui.layout.Measurable
 import androidx.compose.ui.layout.MeasureResult
 import androidx.compose.ui.layout.MeasureScope
-import androidx.compose.ui.platform.ViewAmbient
+import androidx.compose.ui.platform.AmbientView
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
@@ -128,10 +128,10 @@ class Insets {
     internal set
 }
 
-val InsetsAmbient = staticAmbientOf<DisplayInsets>()
+val AmbientInsets = staticAmbientOf<DisplayInsets>()
 
 /**
- * Applies any [WindowInsetsCompat] values to [InsetsAmbient], which are then available
+ * Applies any [WindowInsetsCompat] values to [AmbientInsets], which are then available
  * within [content].
  *
  * @param consumeWindowInsets Whether to consume any [WindowInsetsCompat]s which are dispatched to
@@ -142,7 +142,7 @@ fun ProvideDisplayInsets(
   consumeWindowInsets: Boolean = true,
   content: @Composable () -> Unit
 ) {
-  val view = ViewAmbient.current
+  val view = AmbientView.current
 
   val displayInsets = remember { DisplayInsets() }
 
@@ -181,7 +181,7 @@ fun ProvideDisplayInsets(
     }
   }
 
-  Providers(InsetsAmbient provides displayInsets) {
+  Providers(AmbientInsets provides displayInsets) {
     content()
   }
 }
@@ -204,7 +204,7 @@ private fun Insets.updateFrom(windowInsets: WindowInsetsCompat, type: Int) {
  * of the content.
  */
 fun Modifier.statusBarsPadding() = composed {
-  insetsPadding(insets = InsetsAmbient.current.statusBars, top = true)
+  insetsPadding(insets = AmbientInsets.current.statusBars, top = true)
 }
 
 /**
@@ -225,7 +225,7 @@ fun Modifier.navigationBarsPadding(
   right: Boolean = true
 ) = composed {
   insetsPadding(
-    insets = InsetsAmbient.current.navigationBars,
+    insets = AmbientInsets.current.navigationBars,
     left = left,
     right = right,
     bottom = bottom
@@ -253,7 +253,7 @@ fun Modifier.navigationBarsPadding(
  */
 fun Modifier.navigationBarsHeightPlus(additional: Dp) = composed {
   InsetsSizeModifier(
-    insets = InsetsAmbient.current.navigationBars,
+    insets = AmbientInsets.current.navigationBars,
     heightSide = VerticalSide.Bottom,
     additionalHeight = additional
   )
