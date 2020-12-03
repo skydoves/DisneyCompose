@@ -77,7 +77,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
     implementation "androidx.navigation:navigation-compose:$versions.composeNavVersion"
     implementation "androidx.ui:ui-tooling:$versions.compostToolVersion"
-    androidTestImplementation "androidx.ui:ui-test:$versions.composeVersion"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$versions.composeVersion"
 
     // compose image loading
     implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"

@@ -16,10 +16,10 @@
 
 package com.skydoves.disneycompose
 
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.ui.test.assertIsDisplayed
-import androidx.ui.test.createAndroidComposeRule
-import androidx.ui.test.onNodeWithText
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.main.MainActivity
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
@@ -63,7 +63,9 @@ class MainActivityPosterDetailsTest {
       }
     }
 
-    composeTestRule.onNodeWithText("Frozen II", ignoreCase = true).assertIsDisplayed()
+    composeTestRule
+      .onNodeWithText("Frozen II", ignoreCase = true)
+      .assertIsDisplayed()
   }
 
   @Test
@@ -77,6 +79,8 @@ class MainActivityPosterDetailsTest {
       }
     }
 
-    composeTestRule.onNodeWithText("Zootopia", ignoreCase = true).assertIsDisplayed()
+    composeTestRule
+      .onNodeWithText("Zootopia", ignoreCase = true)
+      .assertIsDisplayed()
   }
 }
