@@ -20,7 +20,7 @@ ext.versions = [
     landscapistVersion  : '1.1.2',
 
     // compose compatibles
-    orchestraVersion    : '1.0.1',
+    orchestraVersion    : '1.0.2',
 
     // androidx jetpack
     constraintVersion   : '2.0.2',
