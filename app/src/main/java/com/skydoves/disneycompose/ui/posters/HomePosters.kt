@@ -26,7 +26,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRippleIndication
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -68,17 +68,16 @@ fun HomePoster(
   modifier: Modifier = Modifier
 ) {
   Surface(
-    modifier = modifier.padding(4.dp),
+    modifier = modifier
+      .padding(4.dp).clickable(
+        onClick = { selectPoster(poster.id) },
+        indication = rememberRipple(bounded = true, color = purple500)
+      ),
     color = MaterialTheme.colors.onBackground,
     elevation = 8.dp,
     shape = RoundedCornerShape(8.dp)
   ) {
-    ConstraintLayout(
-      modifier = Modifier.clickable(
-        onClick = { selectPoster(poster.id) },
-        indication = rememberRippleIndication(color = purple500)
-      )
-    ) {
+    ConstraintLayout {
       val (image, title, content) = createRefs()
       NetworkImage(
         url = poster.poster,

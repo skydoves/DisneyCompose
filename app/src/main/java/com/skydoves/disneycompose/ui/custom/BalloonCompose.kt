@@ -19,7 +19,7 @@ package com.skydoves.disneycompose.ui.custom
 import android.view.View
 import androidx.compose.foundation.layout.ConstrainedLayoutReference
 import androidx.compose.foundation.layout.ConstraintLayoutScope
-import androidx.compose.material.ripple.rememberRippleIndication
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -45,6 +45,6 @@ fun ConstraintLayoutScope.ImageBalloonAnchor(
     modifier = modifier,
     balloon = balloon,
     onAnchorClick = onClick,
-    onClickIndication = rememberRippleIndication(color = purple500)
+    onClickIndication = rememberRipple(bounded = true, color = purple500)
   )
 }

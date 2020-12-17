@@ -18,14 +18,14 @@ package com.skydoves.disneycompose.extensions
 
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawOpacity
+import androidx.compose.ui.draw.alpha
 
 /** sets a visibility of the disney views. */
 @Stable
 fun Modifier.visible(visibility: Boolean): Modifier {
   return if (visibility) {
-    this.then(drawOpacity(1f))
+    this.then(alpha(1f))
   } else {
-    this.then(drawOpacity(0f))
+    this.then(alpha(0f))
   }
 }

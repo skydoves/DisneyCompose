@@ -26,13 +26,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRippleIndication
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,14 +59,18 @@ fun RadioPosters(
       .statusBarsPadding()
       .background(MaterialTheme.colors.background)
   ) {
-    LazyColumnFor(
-      items = posters,
+    LazyColumn(
       state = listState,
       contentPadding = PaddingValues(4.dp)
-    ) { poster ->
-      RadioPoster(
-        poster = poster,
-        selectPoster = selectPoster
+    ) {
+      items(
+        items = posters,
+        itemContent = { poster ->
+          RadioPoster(
+            poster = poster,
+            selectPoster = selectPoster
+          )
+        }
       )
     }
   }
@@ -84,7 +88,7 @@ fun RadioPoster(
       .padding(4.dp)
       .clickable(
         onClick = { selectPoster(poster.id) },
-        indication = rememberRippleIndication(color = purple500)
+        indication = rememberRipple(bounded = true, color = purple500)
       ),
     color = MaterialTheme.colors.onBackground,
     elevation = 8.dp,
