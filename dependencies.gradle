@@ -13,7 +13,7 @@ ext.versions = [
 
     // compose
     composeVersion      : '1.0.0-alpha09',
-    compostToolVersion  : '1.0.0-alpha07',
+    composeToolVersion  : '1.0.0-alpha07',
     composeNavVersion   : '1.0.0-alpha03',
 
     // compose image loading
