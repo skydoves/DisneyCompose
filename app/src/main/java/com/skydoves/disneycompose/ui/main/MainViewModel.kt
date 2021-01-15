@@ -22,7 +22,6 @@ import androidx.annotation.WorkerThread
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -32,9 +31,12 @@ import com.skydoves.disneycompose.base.LiveCoroutinesViewModel
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.repository.DetailRepository
 import com.skydoves.disneycompose.repository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
   private val mainRepository: MainRepository,
   private val detailRepository: DetailRepository,
   val imageLoader: ImageLoader
