@@ -41,33 +41,32 @@ class MainRepository @Inject constructor(
   }
 
   @WorkerThread
-  suspend fun loadDisneyPosters(
+  fun loadDisneyPosters(
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
     val posters: List<Poster> = posterDao.getPosterList()
     if (posters.isEmpty()) {
       // request API network call asynchronously.
-      disneyService.fetchDisneyPosterList().apply {
+      disneyService.fetchDisneyPosterList()
         // handle the case when the API request gets a success response.
-        this.suspendOnSuccess {
+        .suspendOnSuccess {
           data.whatIfNotNull {
             posterDao.insertPosterList(it)
             emit(it)
             onSuccess()
           }
         }
-          // handle the case when the API request gets an error response.
-          // e.g. internal server error.
-          .onError {
-            onError(message())
-          }
-          // handle the case when the API request gets an exception response.
-          // e.g. network connection error.
-          .onException {
-            onError(message())
-          }
-      }
+        // handle the case when the API request gets an error response.
+        // e.g. internal server error.
+        .onError {
+          onError(message())
+        }
+        // handle the case when the API request gets an exception response.
+        // e.g. network connection error.
+        .onException {
+          onError(message())
+        }
     } else {
       emit(posters)
       onSuccess()
