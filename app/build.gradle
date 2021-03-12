@@ -83,8 +83,8 @@ dependencies {
     // compose image loading
     implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"
 
-    // insets
-    implementation "dev.chrisbanes.accompanist:accompanist-insets:0.6.2"
+    // compose insets
+    implementation "dev.chrisbanes.accompanist:accompanist-insets:$versions.accompanistVersion"
 
     // compose compatibles
     implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
