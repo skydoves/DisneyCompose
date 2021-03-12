@@ -17,12 +17,13 @@
 package com.skydoves.disneycompose.ui.main
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import androidx.compose.runtime.CompositionLocalProvider
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
+import com.skydoves.landscapist.coil.LocalCoilImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,15 +34,12 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    // observe toast.
-    viewModel.toast.observe(this) {
-      Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-    }
-
     // set disney contents.
     setContent {
-      DisneyComposeTheme {
-        DisneyMain(viewModel = viewModel)
+      CompositionLocalProvider(LocalCoilImageLoader provides viewModel.imageLoader) {
+        DisneyComposeTheme {
+          DisneyMain()
+        }
       }
     }
   }
