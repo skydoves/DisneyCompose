@@ -103,9 +103,9 @@ dependencies {
     // startup
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
 
-    // hlt
     // hilt
     implementation "com.google.dagger:hilt-android:$versions.hiltCoreVersion"
+    implementation "androidx.hilt:hilt-navigation-compose:$versions.hiltComposeNavigation"
     kapt "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
     kapt "androidx.hilt:hilt-compiler:$versions.hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltCoreVersion"
