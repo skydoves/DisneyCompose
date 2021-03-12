@@ -17,7 +17,7 @@
 package com.skydoves.disneycompose.ui.main
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,15 +26,15 @@ import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.posters.Posters
-import com.skydoves.disneycompose.utils.ProvideDisplayInsets
-import com.skydoves.landscapist.coil.AmbientCoilImageLoader
+import com.skydoves.landscapist.coil.LocalCoilImageLoader
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 @Composable
 fun DisneyMain(viewModel: MainViewModel) {
   val navController = rememberNavController()
 
-  ProvideDisplayInsets {
-    Providers(AmbientCoilImageLoader provides viewModel.imageLoader) {
+  ProvideWindowInsets {
+    CompositionLocalProvider(LocalCoilImageLoader provides viewModel.imageLoader) {
       NavHost(navController = navController, startDestination = NavScreen.Home.route) {
         composable(NavScreen.Home.route) {
           Posters(

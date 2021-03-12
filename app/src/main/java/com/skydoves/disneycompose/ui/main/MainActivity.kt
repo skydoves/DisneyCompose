@@ -19,9 +19,9 @@ package com.skydoves.disneycompose.ui.main
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
-import androidx.compose.ui.platform.setContent
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
