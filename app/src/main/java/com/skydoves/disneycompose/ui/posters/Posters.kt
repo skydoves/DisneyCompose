@@ -18,14 +18,13 @@ package com.skydoves.disneycompose.ui.posters
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
-import androidx.compose.material.AmbientContentColor
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -46,13 +45,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.skydoves.disneycompose.R
 import com.skydoves.disneycompose.extensions.visible
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.ui.theme.purple200
-import com.skydoves.disneycompose.utils.navigationBarsHeightPlus
-import com.skydoves.disneycompose.utils.navigationBarsPadding
+import dev.chrisbanes.accompanist.insets.navigationBarsHeight
+import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Posters(
@@ -76,17 +76,16 @@ fun Posters(
         BottomNavigation(
           backgroundColor = purple200,
           modifier = Modifier
-            .navigationBarsHeightPlus(56.dp)
+            .navigationBarsHeight(56.dp)
         ) {
           tabs.forEach { tab ->
             BottomNavigationItem(
-              icon = { Icon(imageVector = tab.icon) },
+              icon = { Icon(imageVector = tab.icon, contentDescription = null) },
               label = { Text(text = stringResource(tab.title), color = Color.White) },
               selected = tab == selectedTab,
               onClick = { viewModel.selectTab(tab.title) },
-              alwaysShowLabels = false,
-              selectedContentColor = AmbientContentColor.current,
-              unselectedContentColor = AmbientContentColor.current,
+              selectedContentColor = LocalContentColor.current,
+              unselectedContentColor = LocalContentColor.current,
               modifier = Modifier.navigationBarsPadding()
             )
           }
@@ -103,12 +102,14 @@ fun Posters(
       }
     }
     CircularProgressIndicator(
-      modifier = Modifier.constrainAs(progress) {
-        top.linkTo(parent.top)
-        bottom.linkTo(parent.bottom)
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-      }.visible(isLoading)
+      modifier = Modifier
+        .constrainAs(progress) {
+          top.linkTo(parent.top)
+          bottom.linkTo(parent.bottom)
+          start.linkTo(parent.start)
+          end.linkTo(parent.end)
+        }
+        .visible(isLoading)
     )
   }
 }
@@ -118,7 +119,7 @@ fun PosterAppBar() {
   TopAppBar(
     elevation = 6.dp,
     backgroundColor = purple200,
-    modifier = Modifier.preferredHeight(58.dp)
+    modifier = Modifier.height(58.dp)
   ) {
     Text(
       modifier = Modifier

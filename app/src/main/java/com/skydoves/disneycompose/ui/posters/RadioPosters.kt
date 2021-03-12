@@ -19,33 +19,32 @@ package com.skydoves.disneycompose.ui.posters
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
-import com.skydoves.disneycompose.ui.theme.purple500
 import com.skydoves.disneycompose.utils.NetworkImage
-import com.skydoves.disneycompose.utils.statusBarsPadding
+import dev.chrisbanes.accompanist.insets.statusBarsPadding
 
 @Composable
 fun RadioPosters(
@@ -87,8 +86,7 @@ fun RadioPoster(
       .fillMaxWidth()
       .padding(4.dp)
       .clickable(
-        onClick = { selectPoster(poster.id) },
-        indication = rememberRipple(bounded = true, color = purple500)
+        onClick = { selectPoster(poster.id) }
       ),
     color = MaterialTheme.colors.onBackground,
     elevation = 8.dp,
@@ -99,10 +97,12 @@ fun RadioPoster(
     ) {
       val (image, title, content) = createRefs()
       NetworkImage(
-        modifier = Modifier.constrainAs(image) {
-          centerVerticallyTo(parent)
-          end.linkTo(title.start)
-        }.preferredHeight(64.dp)
+        modifier = Modifier
+          .constrainAs(image) {
+            centerVerticallyTo(parent)
+            end.linkTo(title.start)
+          }
+          .height(64.dp)
           .aspectRatio(1f)
           .fillMaxSize()
           .clip(RoundedCornerShape(4.dp)),
@@ -110,9 +110,11 @@ fun RadioPoster(
       )
       Text(
         poster.name,
-        Modifier.constrainAs(title) {
-          start.linkTo(image.end)
-        }.padding(horizontal = 12.dp),
+        Modifier
+          .constrainAs(title) {
+            start.linkTo(image.end)
+          }
+          .padding(horizontal = 12.dp),
         Color.Unspecified, TextUnit.Unspecified, null, null, null, TextUnit.Unspecified, null, null,
         TextUnit.Unspecified, TextOverflow.Ellipsis,
         true, 1,
@@ -121,10 +123,12 @@ fun RadioPoster(
       Text(
         text = poster.playtime,
         style = MaterialTheme.typography.body2,
-        modifier = Modifier.constrainAs(content) {
-          start.linkTo(image.end)
-          top.linkTo(title.bottom)
-        }.padding(start = 12.dp, top = 4.dp)
+        modifier = Modifier
+          .constrainAs(content) {
+            start.linkTo(image.end)
+            top.linkTo(title.bottom)
+          }
+          .padding(start = 12.dp, top = 4.dp)
       )
     }
   }
