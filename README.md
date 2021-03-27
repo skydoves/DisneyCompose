@@ -39,6 +39,7 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
   - Repository pattern
 - Material Design & Animations
 - [Landscapist](https://github.com/skydoves/landscapist) - Jetpack Compose image loading library with shimmer & circular reveal animations.
+- [Orchestra-Balloon](https://github.com/skydoves/orchestra) - Jetpack Compose tooltips library.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight http API response and handling error responses.
 - [WhatIf](https://github.com/skydoves/whatif) - checking nullable object and empty collections more fluently.
