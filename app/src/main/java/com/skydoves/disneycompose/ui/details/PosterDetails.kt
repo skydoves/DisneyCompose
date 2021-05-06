@@ -97,14 +97,7 @@ fun PosterDetails(
             .padding(12.dp)
             .clickable(onClick = { pressOnBack() })
         )
-        ImageBalloonAnchor(
-          reference = image,
-          modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(0.85f),
-          content = poster.name,
-          onClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
-        )
+
       }
     }
   }
