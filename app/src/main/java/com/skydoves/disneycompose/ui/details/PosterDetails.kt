@@ -87,6 +87,14 @@ fun PosterDetails(
             }
             .padding(16.dp)
         )
+        ImageBalloonAnchor(
+          reference = image,
+          modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(0.85f),
+          content = poster.name,
+          onClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
+        )
         Icon(
           imageVector = Icons.Filled.ArrowBack,
           contentDescription = null,
@@ -97,14 +105,7 @@ fun PosterDetails(
             .padding(12.dp)
             .clickable(onClick = { pressOnBack() })
         )
-        ImageBalloonAnchor(
-          reference = image,
-          modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(0.85f),
-          content = poster.name,
-          onClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
-        )
+
       }
     }
   }
