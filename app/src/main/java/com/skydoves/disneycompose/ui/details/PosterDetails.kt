@@ -105,7 +105,6 @@ fun PosterDetails(
             .padding(12.dp)
             .clickable(onClick = { pressOnBack() })
         )
-
       }
     }
   }
