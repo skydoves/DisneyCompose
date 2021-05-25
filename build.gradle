@@ -4,12 +4,16 @@ buildscript {
         google()
         mavenCentral()
         jcenter()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltCoreVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
+
+        // Not working. We are waiting for the update.
+        // classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltCoreVersion"
+        classpath("com.google.dagger:hilt-android-gradle-plugin:HEAD-SNAPSHOT")
     }
 }
 

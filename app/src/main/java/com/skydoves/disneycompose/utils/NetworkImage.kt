@@ -16,11 +16,17 @@
 
 package com.skydoves.disneycompose.utils
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import com.google.accompanist.glide.rememberGlidePainter
 import com.skydoves.disneycompose.ui.theme.shimmerHighLight
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
@@ -38,22 +44,14 @@ fun NetworkImage(
   circularRevealedEnabled: Boolean = false,
   contentScale: ContentScale = ContentScale.Crop
 ) {
-  CoilImage(
-    imageModel = url,
-    modifier = modifier,
+  Image(
+    painter = rememberGlidePainter(url),
+    contentDescription = "",
     contentScale = contentScale,
-    circularRevealedEnabled = circularRevealedEnabled,
-    circularRevealedDuration = 450,
-    shimmerParams = ShimmerParams(
-      baseColor = MaterialTheme.colors.background,
-      highlightColor = shimmerHighLight,
-      dropOff = 0.65f
-    ),
-    failure = {
-      Text(
-        text = "image request failed.",
-        style = MaterialTheme.typography.body2
-      )
+    modifier = modifier.apply {
+      if (circularRevealedEnabled) {
+        clip(RoundedCornerShape(450.dp))
+      }
     }
   )
 }

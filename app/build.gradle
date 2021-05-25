@@ -97,7 +97,8 @@ dependencies {
     implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"
 
     // compose insets
-    implementation "dev.chrisbanes.accompanist:accompanist-insets:$versions.accompanistVersion"
+    implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"
+    implementation "com.google.accompanist:accompanist-glide:$versions.accompanistVersion"
 
     // compose compatibles
     implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"

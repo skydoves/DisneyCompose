@@ -39,7 +39,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.skydoves.disneycompose.model.Poster
-import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
 import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.utils.NetworkImage
 
@@ -88,6 +87,8 @@ fun PosterDetails(
             }
             .padding(16.dp)
         )
+        // It doesn't work anymore
+        /*
         ImageBalloonAnchor(
           reference = image,
           modifier = Modifier
@@ -96,6 +97,7 @@ fun PosterDetails(
           content = poster.name,
           onClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
         )
+         */
         Icon(
           imageVector = Icons.Filled.ArrowBack,
           tint = Color.White,

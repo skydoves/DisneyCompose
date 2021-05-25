@@ -44,7 +44,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
 import com.skydoves.disneycompose.utils.NetworkImage
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 
 @Composable
 fun RadioPosters(

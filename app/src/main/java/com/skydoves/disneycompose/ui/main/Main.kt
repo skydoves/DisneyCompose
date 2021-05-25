@@ -20,16 +20,15 @@ import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
-import androidx.navigation.compose.navigate
+import com.google.accompanist.insets.ProvideWindowInsets
 import androidx.navigation.compose.rememberNavController
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.posters.Posters
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 @Composable
 fun DisneyMain() {
@@ -39,7 +38,7 @@ fun DisneyMain() {
   ProvideWindowInsets {
     NavHost(navController = navController, startDestination = NavScreen.Home.route) {
       composable(NavScreen.Home.route) { backStackEntry ->
-        val viewModel = hiltNavGraphViewModel<MainViewModel>(backStackEntry = backStackEntry)
+        val viewModel = hiltViewModel<MainViewModel>(backStackEntry = backStackEntry)
         Posters(
           viewModel = viewModel,
           selectPoster = {
@@ -56,7 +55,7 @@ fun DisneyMain() {
           navArgument(NavScreen.PosterDetails.argument0) { type = NavType.LongType }
         )
       ) { backStackEntry ->
-        val viewModel = hiltNavGraphViewModel<MainViewModel>(backStackEntry = backStackEntry)
+        val viewModel = hiltViewModel<MainViewModel>(backStackEntry = backStackEntry)
 
         val posterId =
           backStackEntry.arguments?.getLong(NavScreen.PosterDetails.argument0) ?: return@composable
@@ -64,7 +63,7 @@ fun DisneyMain() {
         viewModel.getPoster(posterId)
 
         PosterDetails(viewModel = viewModel) {
-          navController.popBackStack(navController.graph.startDestination, false)
+          navController.popBackStack(NavScreen.Home.route, false)
         }
       }
     }
