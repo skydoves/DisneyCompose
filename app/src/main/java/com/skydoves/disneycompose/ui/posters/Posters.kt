@@ -46,13 +46,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.google.accompanist.insets.navigationBarsHeight
+import com.google.accompanist.insets.navigationBarsPadding
 import com.skydoves.disneycompose.R
 import com.skydoves.disneycompose.extensions.visible
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.ui.theme.purple200
-import dev.chrisbanes.accompanist.insets.navigationBarsHeight
-import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun Posters(
