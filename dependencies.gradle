@@ -12,13 +12,13 @@ ext.versions = [
     materialVersion      : '1.3.0-alpha03',
 
     // compose
-    composeVersion       : '1.0.0-beta08',
+    composeVersion       : '1.0.0-beta09',
     constraintVersion    : '1.0.0-alpha07',
     activityVersion      : '1.3.0-beta01',
     composeNavVersion    : '2.4.0-alpha02',
 
     // compose image loading
-    landscapistVersion   : '1.2.3',
+    landscapistVersion   : '1.2.4',
 
     // compose compatibles
     orchestraVersion     : '1.0.6',
