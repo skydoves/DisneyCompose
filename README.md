@@ -38,6 +38,7 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
   - MVVM Architecture (Declarative View - ViewModel - Model)
   - Repository pattern
 - Material Design & Animations
+- [Accompanist](https://github.com/google/accompanist) - A collection of extension libraries for Jetpack Compose.
 - [Landscapist](https://github.com/skydoves/landscapist) - Jetpack Compose image loading library with shimmer & circular reveal animations.
 - [Orchestra-Balloon](https://github.com/skydoves/orchestra) - Jetpack Compose tooltips library.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
