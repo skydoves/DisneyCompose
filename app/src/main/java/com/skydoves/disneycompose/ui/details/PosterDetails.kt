@@ -40,12 +40,11 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
-import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.utils.NetworkImage
 
 @Composable
 fun PosterDetails(
-  viewModel: MainViewModel,
+  viewModel: DetailViewModel,
   pressOnBack: () -> Unit
 ) {
   val details: Poster? by viewModel.posterDetails.observeAsState()

@@ -19,7 +19,9 @@ package com.skydoves.disneycompose
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.skydoves.disneycompose.ui.details.DetailViewModel
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.main.MainActivity
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
@@ -54,10 +56,11 @@ class MainActivityPosterDetailsTest {
     composeTestRule.setContent {
       DisneyComposeTheme {
 
-        activity.viewModel.getPoster(0)
+        val viewModel = hiltViewModel<DetailViewModel>()
+        viewModel.getPoster(0)
 
         PosterDetails(
-          viewModel = activity.viewModel,
+          viewModel = viewModel,
           pressOnBack = {}
         )
       }
@@ -72,8 +75,9 @@ class MainActivityPosterDetailsTest {
   fun posterDetailsZootopiaLoadingTest() {
     composeTestRule.setContent {
       DisneyComposeTheme {
+        val viewModel = hiltViewModel<DetailViewModel>()
         PosterDetails(
-          viewModel = activity.viewModel,
+          viewModel = viewModel,
           pressOnBack = {}
         )
       }
