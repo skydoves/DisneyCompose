@@ -38,8 +38,8 @@ fun DisneyMain() {
 
   ProvideWindowInsets {
     NavHost(navController = navController, startDestination = NavScreen.Home.route) {
-      composable(NavScreen.Home.route) { backStackEntry ->
-        val viewModel = hiltViewModel<MainViewModel>(backStackEntry = backStackEntry)
+      composable(NavScreen.Home.route) {
+        val viewModel = hiltViewModel<MainViewModel>()
         Posters(
           viewModel = viewModel,
           selectPoster = {
@@ -56,7 +56,7 @@ fun DisneyMain() {
           navArgument(NavScreen.PosterDetails.argument0) { type = NavType.LongType }
         )
       ) { backStackEntry ->
-        val viewModel = hiltViewModel<DetailViewModel>(backStackEntry = backStackEntry)
+        val viewModel = hiltViewModel<DetailViewModel>()
 
         val posterId =
           backStackEntry.arguments?.getLong(NavScreen.PosterDetails.argument0) ?: return@composable

@@ -14,7 +14,7 @@ ext.versions = [
     // compose
     composeVersion       : '1.0.0-rc01',
     constraintVersion    : '1.0.0-alpha07',
-    activityVersion      : '1.3.0-beta01',
+    activityVersion      : '1.3.0-rc02',
     composeNavVersion    : '2.4.0-alpha02',
 
     // compose image loading
@@ -41,7 +41,7 @@ ext.versions = [
     // di
     hiltCoreVersion      : '2.37',
     hiltVersion          : '1.0.0',
-    hiltComposeNavigation: '1.0.0-alpha02',
+    hiltComposeNavigation: '1.0.0-alpha03',
 
     // network
     retrofitVersion      : '2.9.0',
