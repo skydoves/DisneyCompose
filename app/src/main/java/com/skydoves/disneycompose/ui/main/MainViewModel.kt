@@ -25,7 +25,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
-import coil.ImageLoader
 import com.skydoves.disneycompose.base.LiveCoroutinesViewModel
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.repository.MainRepository
@@ -35,8 +34,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-  private val mainRepository: MainRepository,
-  val imageLoader: ImageLoader
+  private val mainRepository: MainRepository
 ) : LiveCoroutinesViewModel() {
 
   private var _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
