@@ -28,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -42,6 +43,7 @@ class MainRepository @Inject constructor(
 
   @WorkerThread
   fun loadDisneyPosters(
+    onStart: () -> Unit,
     onSuccess: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
@@ -67,5 +69,5 @@ class MainRepository @Inject constructor(
     } else {
       emit(posters)
     }
-  }.onCompletion { onSuccess() }.flowOn(Dispatchers.IO)
+  }.onStart { onStart() }.onCompletion { onSuccess() }.flowOn(Dispatchers.IO)
 }

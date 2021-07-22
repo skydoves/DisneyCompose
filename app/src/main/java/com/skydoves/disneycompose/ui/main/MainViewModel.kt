@@ -38,8 +38,14 @@ class MainViewModel @Inject constructor(
   private val mainRepository: MainRepository
 ) : ViewModel() {
 
-  private var _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
-  val posterList: LiveData<List<Poster>>
+  private val _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
+  val posterList: LiveData<List<Poster>> = _posterList.switchMap {
+    this.mainRepository.loadDisneyPosters(
+      onStart = { _isLoading.postValue(true) },
+      onSuccess = { _isLoading.postValue(false) },
+      onError = { _toast.postValue(it) }
+    ).asLiveData(viewModelIOContext)
+  }
 
   private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
   val isLoading: LiveData<Boolean> get() = _isLoading
@@ -52,14 +58,6 @@ class MainViewModel @Inject constructor(
 
   init {
     Timber.d("injection MainViewModel")
-
-    posterList = _posterList.switchMap {
-      _isLoading.postValue(true)
-      this.mainRepository.loadDisneyPosters(
-        onSuccess = { _isLoading.postValue(false) },
-        onError = { _toast.postValue(it) }
-      ).asLiveData(viewModelIOContext)
-    }
   }
 
   @MainThread
