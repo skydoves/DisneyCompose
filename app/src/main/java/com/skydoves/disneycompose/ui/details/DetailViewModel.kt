@@ -19,7 +19,7 @@ package com.skydoves.disneycompose.ui.details
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.skydoves.disneycompose.base.LiveCoroutinesViewModel
+import androidx.lifecycle.ViewModel
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.repository.DetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +29,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
   private val detailRepository: DetailRepository
-) : LiveCoroutinesViewModel() {
+) : ViewModel() {
 
   private var _posterDetails: LiveData<Poster> = MutableLiveData()
   val posterDetails: LiveData<Poster> get() = _posterDetails

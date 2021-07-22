@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-package com.skydoves.disneycompose.base
+package com.skydoves.disneycompose.extensions
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
-abstract class LiveCoroutinesViewModel : ViewModel() {
-
-  inline fun <T> launchOnViewModelScope(crossinline block: suspend () -> LiveData<T>): LiveData<T> {
-    return liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-      emitSource(block())
-    }
-  }
-}
+val ViewModel.viewModelIOContext: CoroutineContext
+  inline get() = viewModelScope.coroutineContext + Dispatchers.IO

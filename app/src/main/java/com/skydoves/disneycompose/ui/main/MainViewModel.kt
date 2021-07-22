@@ -23,9 +23,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
-import com.skydoves.disneycompose.base.LiveCoroutinesViewModel
+import com.skydoves.disneycompose.extensions.viewModelIOContext
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,7 +36,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
   private val mainRepository: MainRepository
-) : LiveCoroutinesViewModel() {
+) : ViewModel() {
 
   private var _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
   val posterList: LiveData<List<Poster>>
@@ -54,12 +55,10 @@ class MainViewModel @Inject constructor(
 
     posterList = _posterList.switchMap {
       _isLoading.postValue(true)
-      launchOnViewModelScope {
-        this.mainRepository.loadDisneyPosters(
-          onSuccess = { _isLoading.postValue(false) },
-          onError = { _toast.postValue(it) }
-        ).asLiveData()
-      }
+      this.mainRepository.loadDisneyPosters(
+        onSuccess = { _isLoading.postValue(false) },
+        onError = { _toast.postValue(it) }
+      ).asLiveData(viewModelIOContext)
     }
   }
 
