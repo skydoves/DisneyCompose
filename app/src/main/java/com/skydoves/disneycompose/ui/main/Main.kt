@@ -64,7 +64,7 @@ fun DisneyMain() {
         viewModel.getPoster(posterId)
 
         PosterDetails(viewModel = viewModel) {
-          navController.popBackStack(NavScreen.Home.route, false)
+          navController.navigateUp()
         }
       }
     }
