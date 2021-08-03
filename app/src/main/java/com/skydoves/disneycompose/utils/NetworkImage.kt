@@ -21,6 +21,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.skydoves.disneycompose.ui.theme.shimmerHighLight
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
@@ -31,10 +33,11 @@ import com.skydoves.landscapist.coil.CoilImage
  *
  * @see CoilImage https://github.com/skydoves/landscapist#coil
  */
+@Preview
 @Composable
 fun NetworkImage(
-  url: String,
-  modifier: Modifier,
+  @PreviewParameter(NetworkUrlPreviewProvider::class) url: String,
+  modifier: Modifier = Modifier,
   circularRevealedEnabled: Boolean = false,
   contentScale: ContentScale = ContentScale.Crop
 ) {
