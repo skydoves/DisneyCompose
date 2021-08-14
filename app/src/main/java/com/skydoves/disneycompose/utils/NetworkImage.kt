@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.skydoves.disneycompose.ui.theme.shimmerHighLight
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
+import com.skydoves.landscapist.palette.BitmapPalette
 
 /**
  * A wrapper around [CoilImage] setting a default [contentScale] and showing
@@ -39,14 +40,16 @@ fun NetworkImage(
   @PreviewParameter(NetworkUrlPreviewProvider::class) url: String,
   modifier: Modifier = Modifier,
   circularRevealedEnabled: Boolean = false,
-  contentScale: ContentScale = ContentScale.Crop
+  contentScale: ContentScale = ContentScale.Crop,
+  bitmapPalette: BitmapPalette? = null
 ) {
   CoilImage(
     imageModel = url,
     modifier = modifier,
     contentScale = contentScale,
     circularRevealedEnabled = circularRevealedEnabled,
-    circularRevealedDuration = 450,
+    circularRevealedDuration = 300,
+    bitmapPalette = bitmapPalette,
     shimmerParams = ShimmerParams(
       baseColor = MaterialTheme.colors.background,
       highlightColor = shimmerHighLight,

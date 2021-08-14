@@ -16,13 +16,19 @@
 
 package com.skydoves.disneycompose.ui.details
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
@@ -33,14 +39,19 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.palette.graphics.Palette
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
 import com.skydoves.disneycompose.utils.NetworkImage
+import com.skydoves.landscapist.palette.BitmapPalette
 
 @Composable
 fun PosterDetails(
@@ -48,6 +59,7 @@ fun PosterDetails(
   pressOnBack: () -> Unit
 ) {
   val details: Poster? by viewModel.posterDetails.observeAsState()
+  var palette by remember { mutableStateOf<Palette?>(null) }
   details?.let { poster ->
     Column(
       modifier = Modifier
@@ -56,7 +68,7 @@ fun PosterDetails(
         .fillMaxHeight()
     ) {
       ConstraintLayout {
-        val (arrow, image, title, content) = createRefs()
+        val (arrow, image, paletteRow, title, content) = createRefs()
         NetworkImage(
           url = poster.poster,
           modifier = Modifier
@@ -65,7 +77,17 @@ fun PosterDetails(
             }
             .fillMaxWidth()
             .aspectRatio(0.85f),
-          circularRevealedEnabled = true
+          circularRevealedEnabled = true,
+          bitmapPalette = BitmapPalette {
+            palette = it
+          }
+        )
+        ColorPalettes(
+          palette = palette,
+          modifier = Modifier
+            .constrainAs(paletteRow) {
+              top.linkTo(image.bottom)
+            }
         )
         Text(
           text = poster.name,
@@ -74,9 +96,9 @@ fun PosterDetails(
           maxLines = 1,
           modifier = Modifier
             .constrainAs(title) {
-              top.linkTo(image.bottom)
+              top.linkTo(paletteRow.bottom)
             }
-            .padding(start = 16.dp, top = 16.dp)
+            .padding(start = 16.dp, top = 12.dp)
         )
         Text(
           text = poster.description,
@@ -107,6 +129,103 @@ fun PosterDetails(
             .clickable(onClick = { pressOnBack() })
         )
       }
+    }
+  }
+}
+
+@Composable
+fun ColorPalettes(
+  palette: Palette?,
+  modifier: Modifier
+) {
+  Row(
+    modifier = modifier
+      .padding(horizontal = 8.dp, vertical = 16.dp)
+      .horizontalScroll(rememberScrollState())
+  ) {
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.lightVibrantSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
+    }
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.lightMutedSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
+    }
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.vibrantSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
+    }
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.mutedSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
+    }
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.darkVibrantSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
+    }
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.darkMutedSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
+    }
+    Crossfade(
+      targetState = palette,
+      modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .size(45.dp)
+    ) {
+      Box(
+        modifier = Modifier
+          .background(color = Color(it?.dominantSwatch?.rgb ?: 0))
+          .fillMaxSize()
+      )
     }
   }
 }
