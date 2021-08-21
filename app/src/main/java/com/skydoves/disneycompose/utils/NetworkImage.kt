@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.skydoves.disneycompose.ui.theme.shimmerHighLight
+import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 import com.skydoves.landscapist.palette.BitmapPalette
@@ -47,8 +48,7 @@ fun NetworkImage(
     imageModel = url,
     modifier = modifier,
     contentScale = contentScale,
-    circularRevealedEnabled = circularRevealedEnabled,
-    circularRevealedDuration = 300,
+    circularReveal = CircularReveal(duration = 250),
     bitmapPalette = bitmapPalette,
     shimmerParams = ShimmerParams(
       baseColor = MaterialTheme.colors.background,
