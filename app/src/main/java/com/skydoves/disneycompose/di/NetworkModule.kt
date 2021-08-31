@@ -62,7 +62,7 @@ object NetworkModule {
     return Retrofit.Builder()
       .client(okHttpClient)
       .baseUrl(
-        "https://gist.githubusercontent.com/skydoves/aa3bbbf495b0fa91db8a9e89f34e4873/raw/a1a13d37027e8920412da5f00f6a89c5a3dbfb9a/"
+        "https://gist.githubusercontent.com/skydoves/176c209dbce4a53c0ff9589e07255f30/raw/6489d9712702e093c4df71500fb822f0d408ef75/"
       )
       .addConverterFactory(GsonConverterFactory.create())
       .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
