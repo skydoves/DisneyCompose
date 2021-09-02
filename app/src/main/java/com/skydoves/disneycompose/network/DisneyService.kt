@@ -22,6 +22,6 @@ import retrofit2.http.GET
 
 interface DisneyService {
 
-  @GET("DisneyPosters.json")
+  @GET("DisneyPosters2.json")
   suspend fun fetchDisneyPosterList(): ApiResponse<List<Poster>>
 }
