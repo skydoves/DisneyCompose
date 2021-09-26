@@ -42,7 +42,7 @@ class MainViewModel @Inject constructor(
   val posterList: LiveData<List<Poster>> = _posterList.switchMap {
     this.mainRepository.loadDisneyPosters(
       onStart = { _isLoading.postValue(true) },
-      onSuccess = { _isLoading.postValue(false) },
+      onCompletion = { _isLoading.postValue(false) },
       onError = { _toast.postValue(it) }
     ).asLiveData(viewModelIOContext)
   }
