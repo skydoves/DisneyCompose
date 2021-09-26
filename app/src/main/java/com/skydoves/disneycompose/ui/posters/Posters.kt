@@ -117,7 +117,7 @@ fun Posters(
 
 @Preview
 @Composable
-fun PosterAppBar() {
+private fun PosterAppBar() {
   TopAppBar(
     elevation = 6.dp,
     backgroundColor = purple200,

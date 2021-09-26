@@ -40,6 +40,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -68,9 +69,14 @@ import com.skydoves.landscapist.palette.BitmapPalette
 
 @Composable
 fun PosterDetails(
+  posterId: Long,
   viewModel: DetailViewModel,
   pressOnBack: () -> Unit
 ) {
+  LaunchedEffect(key1 = posterId) {
+    viewModel.getPoster(posterId)
+  }
+
   val details: Poster? by viewModel.posterDetails.observeAsState()
   details?.let { poster ->
     PosterDetailsBody(poster, pressOnBack)
@@ -78,7 +84,7 @@ fun PosterDetails(
 }
 
 @Composable
-fun PosterDetailsBody(
+private fun PosterDetailsBody(
   poster: Poster,
   pressOnBack: () -> Unit
 ) {
@@ -201,7 +207,7 @@ fun PosterDetailsBody(
 }
 
 @Composable
-fun ColorPalettes(
+private fun ColorPalettes(
   palette: Palette?,
   modifier: Modifier
 ) {

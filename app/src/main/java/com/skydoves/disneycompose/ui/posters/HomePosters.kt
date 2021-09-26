@@ -47,8 +47,8 @@ fun HomePosters(
 ) {
   Column(
     modifier = modifier
-      .verticalScroll(rememberScrollState())
       .statusBarsPadding()
+      .verticalScroll(rememberScrollState())
       .background(MaterialTheme.colors.background)
   ) {
     StaggeredVerticalGrid(
@@ -63,7 +63,7 @@ fun HomePosters(
 }
 
 @Composable
-fun HomePoster(
+private fun HomePoster(
   poster: Poster,
   selectPoster: (Long) -> Unit,
   modifier: Modifier = Modifier
@@ -118,7 +118,7 @@ fun HomePoster(
 
 @Preview
 @Composable
-fun HomePosterPreviewLight() {
+private fun HomePosterPreviewLight() {
   DisneyComposeTheme(darkTheme = false) {
     HomePoster(
       poster = Poster.mock(),
@@ -129,7 +129,7 @@ fun HomePosterPreviewLight() {
 
 @Preview
 @Composable
-fun HomePosterPreviewDark() {
+private fun HomePosterPreviewDark() {
   DisneyComposeTheme(darkTheme = true) {
     HomePoster(
       poster = Poster.mock(),

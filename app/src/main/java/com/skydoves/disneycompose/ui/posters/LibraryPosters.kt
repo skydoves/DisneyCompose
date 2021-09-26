@@ -68,7 +68,7 @@ fun LibraryPosters(
 }
 
 @Composable
-fun LibraryPoster(
+private fun LibraryPoster(
   poster: Poster,
   selectPoster: (Long) -> Unit,
   modifier: Modifier = Modifier
@@ -127,7 +127,7 @@ fun LibraryPoster(
 
 @Preview
 @Composable
-fun LibraryPosterPreviewLight() {
+private fun LibraryPosterPreviewLight() {
   DisneyComposeTheme(darkTheme = false) {
     LibraryPoster(
       poster = Poster.mock(),
@@ -138,7 +138,7 @@ fun LibraryPosterPreviewLight() {
 
 @Preview
 @Composable
-fun LibraryPosterPreviewDark() {
+private fun LibraryPosterPreviewDark() {
   DisneyComposeTheme(darkTheme = true) {
     LibraryPoster(
       poster = Poster.mock(),
