@@ -4,8 +4,8 @@ ext.versions = [
     versionCode          : 4,
     versionName          : '1.0.3',
 
-    gradleBuildTool      : '7.0.0',
-    spotlessGradle       : '5.14.0',
+    gradleBuildTool      : '7.0.2',
+    spotlessGradle       : '5.15.0',
     kotlin               : '1.5.21',
 
     // material
