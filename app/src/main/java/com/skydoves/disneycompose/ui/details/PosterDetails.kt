@@ -41,8 +41,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -74,10 +74,10 @@ fun PosterDetails(
   pressOnBack: () -> Unit
 ) {
   LaunchedEffect(key1 = posterId) {
-    viewModel.getPoster(posterId)
+    viewModel.loadPosterById(posterId)
   }
 
-  val details: Poster? by viewModel.posterDetails.observeAsState()
+  val details: Poster? by viewModel.posterDetailsFlow.collectAsState(initial = null)
   details?.let { poster ->
     PosterDetailsBody(poster, pressOnBack)
   }
