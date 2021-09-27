@@ -76,7 +76,7 @@ fun RadioPosters(
 }
 
 @Composable
-fun RadioPoster(
+private fun RadioPoster(
   poster: Poster,
   selectPoster: (Long) -> Unit,
   modifier: Modifier = Modifier
@@ -136,7 +136,7 @@ fun RadioPoster(
 
 @Preview
 @Composable
-fun RadioPosterPreviewLight() {
+private fun RadioPosterPreviewLight() {
   DisneyComposeTheme(darkTheme = false) {
     RadioPoster(
       poster = Poster.mock(),
@@ -147,7 +147,7 @@ fun RadioPosterPreviewLight() {
 
 @Preview
 @Composable
-fun RadioPosterPreviewDark() {
+private fun RadioPosterPreviewDark() {
   DisneyComposeTheme(darkTheme = true) {
     RadioPoster(
       poster = Poster.mock(),

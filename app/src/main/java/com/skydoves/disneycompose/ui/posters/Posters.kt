@@ -35,8 +35,8 @@ import androidx.compose.material.icons.filled.LibraryAdd
 import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -60,8 +60,8 @@ fun Posters(
   viewModel: MainViewModel,
   selectPoster: (Long) -> Unit
 ) {
-  val posters: List<Poster> by viewModel.posterList.observeAsState(listOf())
-  val isLoading: Boolean by viewModel.isLoading.observeAsState(false)
+  val posters: List<Poster> by viewModel.posterList.collectAsState(initial = listOf())
+  val isLoading: Boolean by viewModel.isLoading
   val selectedTab = DisneyHomeTab.getTabFromResource(viewModel.selectedTab.value)
   val tabs = DisneyHomeTab.values()
 
@@ -117,7 +117,7 @@ fun Posters(
 
 @Preview
 @Composable
-fun PosterAppBar() {
+private fun PosterAppBar() {
   TopAppBar(
     elevation = 6.dp,
     backgroundColor = purple200,

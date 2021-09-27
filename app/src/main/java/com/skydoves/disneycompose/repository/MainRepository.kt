@@ -44,7 +44,7 @@ class MainRepository @Inject constructor(
   @WorkerThread
   fun loadDisneyPosters(
     onStart: () -> Unit,
-    onSuccess: () -> Unit,
+    onCompletion: () -> Unit,
     onError: (String) -> Unit
   ) = flow {
     val posters: List<Poster> = posterDao.getPosterList()
@@ -69,5 +69,5 @@ class MainRepository @Inject constructor(
     } else {
       emit(posters)
     }
-  }.onStart { onStart() }.onCompletion { onSuccess() }.flowOn(Dispatchers.IO)
+  }.onStart { onStart() }.onCompletion { onCompletion() }.flowOn(Dispatchers.IO)
 }

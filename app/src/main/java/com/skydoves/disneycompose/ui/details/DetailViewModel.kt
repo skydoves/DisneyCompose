@@ -17,12 +17,11 @@
 package com.skydoves.disneycompose.ui.details
 
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.repository.DetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -31,15 +30,16 @@ class DetailViewModel @Inject constructor(
   private val detailRepository: DetailRepository
 ) : ViewModel() {
 
-  private var _posterDetails: LiveData<Poster> = MutableLiveData()
-  val posterDetails: LiveData<Poster> get() = _posterDetails
+  private val posterIdSharedFlow: MutableSharedFlow<Long> = MutableSharedFlow(replay = 1)
+
+  val posterDetailsFlow = posterIdSharedFlow.flatMapLatest {
+    detailRepository.getPosterById(it)
+  }
 
   init {
     Timber.d("init DetailViewModel")
   }
 
   @WorkerThread
-  fun getPoster(id: Long) {
-    _posterDetails = detailRepository.getPosterById(id)
-  }
+  fun loadPosterById(id: Long) = posterIdSharedFlow.tryEmit(id)
 }

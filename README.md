@@ -29,7 +29,6 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
 - Hilt (alpha) for dependency injection.
 - JetPack
   - Compose - A modern toolkit for building native Android UI.
-  - LiveData - notify domain layer data to views.
   - Lifecycle - dispose observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
   - Room Persistence - construct database.

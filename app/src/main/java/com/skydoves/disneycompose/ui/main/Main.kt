@@ -16,10 +16,7 @@
 
 package com.skydoves.disneycompose.ui.main
 
-import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -27,28 +24,22 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.skydoves.disneycompose.ui.details.DetailViewModel
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.posters.Posters
 
 @Composable
-fun DisneyMain() {
+fun DisneyMainScreen() {
   val navController = rememberNavController()
-  val context = LocalContext.current
 
   ProvideWindowInsets {
     NavHost(navController = navController, startDestination = NavScreen.Home.route) {
       composable(NavScreen.Home.route) {
-        val viewModel = hiltViewModel<MainViewModel>()
         Posters(
-          viewModel = viewModel,
+          viewModel = hiltViewModel(),
           selectPoster = {
             navController.navigate("${NavScreen.PosterDetails.route}/$it")
           }
         )
-        viewModel.toast.observe(LocalLifecycleOwner.current) {
-          Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        }
       }
       composable(
         route = NavScreen.PosterDetails.routeWithArgument,
@@ -56,14 +47,10 @@ fun DisneyMain() {
           navArgument(NavScreen.PosterDetails.argument0) { type = NavType.LongType }
         )
       ) { backStackEntry ->
-        val viewModel = hiltViewModel<DetailViewModel>()
-
         val posterId =
           backStackEntry.arguments?.getLong(NavScreen.PosterDetails.argument0) ?: return@composable
 
-        viewModel.getPoster(posterId)
-
-        PosterDetails(viewModel = viewModel) {
+        PosterDetails(posterId = posterId, viewModel = hiltViewModel()) {
           navController.navigateUp()
         }
       }

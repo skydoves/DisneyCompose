@@ -30,16 +30,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-  @VisibleForTesting val viewModel: RootViewModel by viewModels()
+  @VisibleForTesting
+  internal val viewModel: RootViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    // set disney contents.
     setContent {
       CompositionLocalProvider(LocalCoilImageLoader provides viewModel.imageLoader) {
+
         DisneyComposeTheme {
-          DisneyMain()
+
+          DisneyMainScreen()
         }
       }
     }
