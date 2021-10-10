@@ -20,10 +20,8 @@ import android.os.Build
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,6 +29,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -58,6 +58,7 @@ import androidx.palette.graphics.Palette
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
+import com.skydoves.disneycompose.extensions.paletteColorList
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
 import com.skydoves.disneycompose.ui.theme.background800
@@ -211,94 +212,24 @@ private fun ColorPalettes(
   palette: Palette?,
   modifier: Modifier
 ) {
-  Row(
+  val colorList: List<Int> = palette.paletteColorList()
+  LazyRow(
     modifier = modifier
       .padding(horizontal = 8.dp, vertical = 16.dp)
-      .horizontalScroll(rememberScrollState())
   ) {
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
+    items(colorList) { color ->
+      Crossfade(
+        targetState = color,
         modifier = Modifier
-          .background(color = Color(it?.lightVibrantSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
-    }
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
-        modifier = Modifier
-          .background(color = Color(it?.lightMutedSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
-    }
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
-        modifier = Modifier
-          .background(color = Color(it?.vibrantSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
-    }
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
-        modifier = Modifier
-          .background(color = Color(it?.mutedSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
-    }
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
-        modifier = Modifier
-          .background(color = Color(it?.darkVibrantSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
-    }
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
-        modifier = Modifier
-          .background(color = Color(it?.darkMutedSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
-    }
-    Crossfade(
-      targetState = palette,
-      modifier = Modifier
-        .padding(horizontal = 8.dp)
-        .size(45.dp)
-    ) {
-      Box(
-        modifier = Modifier
-          .background(color = Color(it?.dominantSwatch?.rgb ?: 0))
-          .fillMaxSize()
-      )
+          .padding(horizontal = 8.dp)
+          .size(45.dp)
+      ) {
+        Box(
+          modifier = Modifier
+            .background(color = Color(it))
+            .fillMaxSize()
+        )
+      }
     }
   }
 }
