@@ -1,6 +1,6 @@
 ext.versions = [
     minSdk               : 21,
-    compileSdk           : 30,
+    compileSdk           : 31,
     versionCode          : 4,
     versionName          : '1.0.3',
 
@@ -21,7 +21,7 @@ ext.versions = [
     landscapistVersion   : '1.3.7',
 
     // compose compatibles
-    orchestraVersion     : '1.1.0',
+    orchestraVersion     : '1.1.1',
 
     // compose insets
     accompanistVersion   : '0.10.0',

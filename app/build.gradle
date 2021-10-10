@@ -27,50 +27,40 @@ android {
             }
         }
     }
+
     lintOptions {
         abortOnError false
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion versions.composeVersion
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
-        freeCompilerArgs += [
-            "-Xallow-jvm-ir-dependencies",
-            "-Xskip-prerelease-check"]
+        jvmTarget = "11"
         useIR = true
     }
+
     buildFeatures {
         compose true
     }
+
     sourceSets {
-        androidTest.java.srcDirs += "src/test-common/java"
-        test.java.srcDirs += "src/test-common/java"
         test.assets.srcDirs += files("$projectDir/schemas".toString())
     }
+
     testOptions {
         unitTests {
             includeAndroidResources = true
             returnDefaultValues = true
         }
     }
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/AL2.0'
-        exclude 'META-INF/LGPL2.1'
-        exclude("META-INF/*.kotlin_module")
-    }
+
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.time.ExperimentalTime"]
         kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"]
