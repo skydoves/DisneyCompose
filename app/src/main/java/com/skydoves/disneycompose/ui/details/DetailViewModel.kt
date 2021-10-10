@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.details
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import com.skydoves.disneycompose.repository.DetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,6 +39,5 @@ class DetailViewModel @Inject constructor(
     Timber.d("init DetailViewModel")
   }
 
-  @WorkerThread
   fun loadPosterById(id: Long) = posterIdSharedFlow.tryEmit(id)
 }
