@@ -53,7 +53,7 @@ And __[follow](https://github.com/skydoves)__ me for my next creations! 🤩
 <img src="https://user-images.githubusercontent.com/24237865/141674368-6013d77c-d52b-4bb1-afe4-9a57a06be32f.jpg" width="18%" align="right" />
 
 ## Contents Credits
-All copyrights of the contents, concepets and phrases that used for this open source projects belong to [The Walt Disney Company](https://www.disneyplus.com/).
+All copyrights of the contents, concepts, and phrases used for this open-source project belong to [The Walt Disney Company](https://www.disneyplus.com/).
 
 # License
 ```xml
