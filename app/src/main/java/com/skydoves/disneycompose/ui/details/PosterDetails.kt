@@ -168,7 +168,7 @@ private fun PosterDetailsBody(
 
       CoilImage(
         imageModel = poster.gif,
-        imageLoader = imageLoader,
+        imageLoader = { imageLoader },
         shimmerParams = ShimmerParams(
           baseColor = background800,
           highlightColor = shimmerHighLight
@@ -180,7 +180,7 @@ private fun PosterDetailsBody(
           .clip(RoundedCornerShape(8.dp))
           .constrainAs(gif) {
             top.linkTo(gifTitle.bottom)
-          }
+          },
       )
 
       ImageBalloonAnchor(
