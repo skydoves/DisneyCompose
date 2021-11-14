@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.skydoves.disneycompose.R
 import com.skydoves.disneycompose.ui.theme.shimmerHighLight
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -53,6 +54,7 @@ fun NetworkImage(
     contentScale = contentScale,
     circularReveal = CircularReveal(duration = 250),
     bitmapPalette = bitmapPalette,
+    previewPlaceholder = R.drawable.poster,
     shimmerParams = ShimmerParams(
       baseColor = MaterialTheme.colors.background,
       highlightColor = shimmerHighLight,
@@ -69,6 +71,6 @@ fun NetworkImage(
           style = MaterialTheme.typography.body2
         )
       }
-    }
+    },
   )
 }
