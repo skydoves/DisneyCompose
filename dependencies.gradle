@@ -13,8 +13,8 @@ ext.versions = [
 
     // compose
     composeVersion       : '1.1.0-beta02',
-    constraintVersion    : '1.0.0-alpha07',
-    activityVersion      : '1.3.0-rc02',
+    constraintVersion    : '1.0.0-rc01',
+    activityVersion      : '1.4.0',
     composeNavVersion    : '2.4.0-alpha05',
 
     // compose image loading
@@ -28,12 +28,12 @@ ext.versions = [
 
     // architecture components
     fragmentVersion      : '1.3.1',
-    lifecycleVersion     : '2.2.0',
+    lifecycleVersion     : '2.4.0',
     roomVersion          : '2.3.0',
     archCompomentVersion : '2.1.0',
 
     // startup
-    startupVersion       : '1.0.0',
+    startupVersion       : '1.1.0',
 
     // di
     hiltCoreVersion      : '2.40.1',
