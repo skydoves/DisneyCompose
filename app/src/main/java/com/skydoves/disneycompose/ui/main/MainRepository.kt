@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.disneycompose.repository
+package com.skydoves.disneycompose.ui.main
 
 import androidx.annotation.WorkerThread
 import com.skydoves.disneycompose.model.Poster
@@ -35,7 +35,7 @@ import javax.inject.Inject
 class MainRepository @Inject constructor(
   private val disneyService: DisneyService,
   private val posterDao: PosterDao
-) : Repository {
+) {
 
   init {
     Timber.d("Injection MainRepository")

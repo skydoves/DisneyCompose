@@ -26,6 +26,7 @@ import javax.inject.Inject
 class RootViewModel @Inject constructor(
   val imageLoader: ImageLoader
 ) : ViewModel() {
+
   init {
     Timber.d("init RootViewModel")
   }
