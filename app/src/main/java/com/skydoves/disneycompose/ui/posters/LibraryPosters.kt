@@ -20,7 +20,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -46,9 +45,9 @@ import com.skydoves.disneycompose.utils.NetworkImage
 
 @Composable
 fun LibraryPosters(
+  modifier: Modifier = Modifier,
   posters: List<Poster>,
-  selectPoster: (Long) -> Unit,
-  modifier: Modifier = Modifier
+  selectPoster: (Long) -> Unit = {},
 ) {
   Column(
     modifier = modifier
@@ -69,9 +68,9 @@ fun LibraryPosters(
 
 @Composable
 private fun LibraryPoster(
+  modifier: Modifier = Modifier,
   poster: Poster,
-  selectPoster: (Long) -> Unit,
-  modifier: Modifier = Modifier
+  selectPoster: (Long) -> Unit = {},
 ) {
   Surface(
     modifier = modifier
@@ -96,9 +95,9 @@ private fun LibraryPoster(
           }
           .height(112.dp)
           .aspectRatio(1.0f)
-          .fillMaxSize()
           .clip(CircleShape)
       )
+
       Text(
         text = poster.name,
         style = MaterialTheme.typography.h2,
@@ -110,6 +109,7 @@ private fun LibraryPoster(
           }
           .padding(8.dp)
       )
+
       Text(
         text = poster.playtime,
         style = MaterialTheme.typography.body1,
@@ -125,24 +125,22 @@ private fun LibraryPoster(
   }
 }
 
-@Preview
 @Composable
+@Preview(name = "LibraryPoster Light")
 private fun LibraryPosterPreviewLight() {
   DisneyComposeTheme(darkTheme = false) {
     LibraryPoster(
-      poster = Poster.mock(),
-      selectPoster = {}
+      poster = Poster.mock()
     )
   }
 }
 
-@Preview
 @Composable
+@Preview(name = "LibraryPoster Dark")
 private fun LibraryPosterPreviewDark() {
   DisneyComposeTheme(darkTheme = true) {
     LibraryPoster(
-      poster = Poster.mock(),
-      selectPoster = {}
+      poster = Poster.mock()
     )
   }
 }

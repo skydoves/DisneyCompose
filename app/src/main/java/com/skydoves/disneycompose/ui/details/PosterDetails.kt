@@ -67,7 +67,7 @@ import com.skydoves.landscapist.palette.BitmapPalette
 fun PosterDetails(
   posterId: Long,
   viewModel: DetailViewModel,
-  pressOnBack: () -> Unit
+  pressOnBack: () -> Unit = {}
 ) {
   LaunchedEffect(key1 = posterId) {
     viewModel.loadPosterById(posterId)

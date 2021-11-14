@@ -96,9 +96,9 @@ fun Posters(
       val modifier = Modifier.padding(innerPadding)
       Crossfade(selectedTab) { destination ->
         when (destination) {
-          DisneyHomeTab.HOME -> HomePosters(posters, selectPoster, modifier)
-          DisneyHomeTab.RADIO -> RadioPosters(posters, selectPoster, modifier)
-          DisneyHomeTab.LIBRARY -> LibraryPosters(posters, selectPoster, modifier)
+          DisneyHomeTab.HOME -> HomePosters(modifier, posters, selectPoster)
+          DisneyHomeTab.RADIO -> RadioPosters(modifier, posters, selectPoster)
+          DisneyHomeTab.LIBRARY -> LibraryPosters(modifier, posters, selectPoster)
         }
       }
     }
