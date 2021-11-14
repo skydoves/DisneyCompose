@@ -57,11 +57,11 @@ class MainActivityPosterDetailsTest {
       DisneyComposeTheme {
 
         val viewModel = hiltViewModel<DetailViewModel>()
-        viewModel.getPoster(0)
+        viewModel.loadPosterById(0)
 
         PosterDetails(
-          viewModel = viewModel,
-          pressOnBack = {}
+          posterId = 0,
+          viewModel = viewModel
         )
       }
     }
@@ -77,8 +77,8 @@ class MainActivityPosterDetailsTest {
       DisneyComposeTheme {
         val viewModel = hiltViewModel<DetailViewModel>()
         PosterDetails(
-          viewModel = viewModel,
-          pressOnBack = {}
+          posterId = 0,
+          viewModel = viewModel
         )
       }
     }

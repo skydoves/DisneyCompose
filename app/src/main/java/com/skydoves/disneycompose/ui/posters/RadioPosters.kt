@@ -21,7 +21,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -35,10 +34,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.insets.statusBarsPadding
@@ -48,9 +45,9 @@ import com.skydoves.disneycompose.utils.NetworkImage
 
 @Composable
 fun RadioPosters(
+  modifier: Modifier = Modifier,
   posters: List<Poster>,
-  selectPoster: (Long) -> Unit,
-  modifier: Modifier = Modifier
+  selectPoster: (Long) -> Unit = {},
 ) {
   val listState = rememberLazyListState()
   Column(
@@ -77,9 +74,9 @@ fun RadioPosters(
 
 @Composable
 private fun RadioPoster(
+  modifier: Modifier = Modifier,
   poster: Poster,
-  selectPoster: (Long) -> Unit,
-  modifier: Modifier = Modifier
+  selectPoster: (Long) -> Unit = {},
 ) {
   Surface(
     modifier = modifier
@@ -96,6 +93,7 @@ private fun RadioPoster(
       modifier = Modifier.padding(8.dp)
     ) {
       val (image, title, content) = createRefs()
+
       NetworkImage(
         modifier = Modifier
           .constrainAs(image) {
@@ -104,38 +102,37 @@ private fun RadioPoster(
           }
           .height(64.dp)
           .aspectRatio(1f)
-          .fillMaxSize()
           .clip(RoundedCornerShape(4.dp)),
         url = poster.poster
       )
+
       Text(
-        poster.name,
-        Modifier
+        modifier = Modifier
           .constrainAs(title) {
             start.linkTo(image.end)
           }
           .padding(horizontal = 12.dp),
-        Color.Unspecified, TextUnit.Unspecified, null, null, null, TextUnit.Unspecified, null, null,
-        TextUnit.Unspecified, TextOverflow.Ellipsis,
-        true, 1,
-        {}, MaterialTheme.typography.h2
+        text = poster.name,
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.h2
       )
+
       Text(
-        text = poster.playtime,
-        style = MaterialTheme.typography.body2,
         modifier = Modifier
           .constrainAs(content) {
             start.linkTo(image.end)
             top.linkTo(title.bottom)
           }
-          .padding(start = 12.dp, top = 4.dp)
+          .padding(start = 12.dp, top = 4.dp),
+        text = poster.playtime,
+        style = MaterialTheme.typography.body2,
       )
     }
   }
 }
 
-@Preview
 @Composable
+@Preview(name = "RadioPoster Light")
 private fun RadioPosterPreviewLight() {
   DisneyComposeTheme(darkTheme = false) {
     RadioPoster(
@@ -145,8 +142,8 @@ private fun RadioPosterPreviewLight() {
   }
 }
 
-@Preview
 @Composable
+@Preview(name = "RadioPoster Dark")
 private fun RadioPosterPreviewDark() {
   DisneyComposeTheme(darkTheme = true) {
     RadioPoster(

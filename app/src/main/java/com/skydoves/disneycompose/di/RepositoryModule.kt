@@ -18,7 +18,7 @@ package com.skydoves.disneycompose.di
 
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.persistence.PosterDao
-import com.skydoves.disneycompose.repository.MainRepository
+import com.skydoves.disneycompose.ui.main.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

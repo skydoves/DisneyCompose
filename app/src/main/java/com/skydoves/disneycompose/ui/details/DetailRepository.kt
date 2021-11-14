@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.disneycompose.repository
+package com.skydoves.disneycompose.ui.details
 
 import androidx.annotation.WorkerThread
 import com.skydoves.disneycompose.persistence.PosterDao
@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 class DetailRepository @Inject constructor(
   private val posterDao: PosterDao
-) : Repository {
+) {
 
   @WorkerThread
   fun getPosterById(id: Long) = flow {

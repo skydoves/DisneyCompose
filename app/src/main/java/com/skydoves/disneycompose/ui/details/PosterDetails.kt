@@ -16,7 +16,6 @@
 
 package com.skydoves.disneycompose.ui.details
 
-import android.os.Build
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,15 +48,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.palette.graphics.Palette
-import coil.ImageLoader
-import coil.decode.GifDecoder
-import coil.decode.ImageDecoderDecoder
 import com.skydoves.disneycompose.extensions.paletteColorList
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
@@ -72,7 +67,7 @@ import com.skydoves.landscapist.palette.BitmapPalette
 fun PosterDetails(
   posterId: Long,
   viewModel: DetailViewModel,
-  pressOnBack: () -> Unit
+  pressOnBack: () -> Unit = {}
 ) {
   LaunchedEffect(key1 = posterId) {
     viewModel.loadPosterById(posterId)
@@ -155,20 +150,8 @@ private fun PosterDetailsBody(
           }
       )
 
-      val context = LocalContext.current
-      val imageLoader = ImageLoader.Builder(context)
-        .componentRegistry {
-          if (Build.VERSION.SDK_INT >= 28) {
-            add(ImageDecoderDecoder(context))
-          } else {
-            add(GifDecoder())
-          }
-        }
-        .build()
-
       CoilImage(
         imageModel = poster.gif,
-        imageLoader = { imageLoader },
         shimmerParams = ShimmerParams(
           baseColor = background800,
           highlightColor = shimmerHighLight

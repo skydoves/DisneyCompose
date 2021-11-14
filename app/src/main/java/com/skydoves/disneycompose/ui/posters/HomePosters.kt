@@ -41,9 +41,9 @@ import com.skydoves.disneycompose.utils.NetworkImage
 
 @Composable
 fun HomePosters(
+  modifier: Modifier = Modifier,
   posters: List<Poster>,
   selectPoster: (Long) -> Unit,
-  modifier: Modifier = Modifier
 ) {
   Column(
     modifier = modifier
@@ -56,7 +56,10 @@ fun HomePosters(
       modifier = Modifier.padding(4.dp)
     ) {
       posters.forEach { poster ->
-        HomePoster(poster = poster, selectPoster = selectPoster)
+        HomePoster(
+          poster = poster,
+          selectPoster = selectPoster
+        )
       }
     }
   }
@@ -64,9 +67,9 @@ fun HomePosters(
 
 @Composable
 private fun HomePoster(
+  modifier: Modifier = Modifier,
   poster: Poster,
-  selectPoster: (Long) -> Unit,
-  modifier: Modifier = Modifier
+  selectPoster: (Long) -> Unit = {},
 ) {
   Surface(
     modifier = modifier
@@ -81,59 +84,59 @@ private fun HomePoster(
     ConstraintLayout {
       val (image, title, content) = createRefs()
       NetworkImage(
-        url = poster.poster,
         modifier = Modifier
+          .aspectRatio(0.8f)
           .constrainAs(image) {
             centerHorizontallyTo(parent)
             top.linkTo(parent.top)
-          }
-          .aspectRatio(0.8f)
+          },
+        url = poster.poster,
       )
+
       Text(
-        text = poster.name,
-        style = MaterialTheme.typography.h2,
-        textAlign = TextAlign.Center,
         modifier = Modifier
           .constrainAs(title) {
             centerHorizontallyTo(parent)
             top.linkTo(image.bottom)
           }
-          .padding(8.dp)
-      )
-      Text(
-        text = poster.playtime,
-        style = MaterialTheme.typography.body1,
+          .padding(8.dp),
+        text = poster.name,
+        style = MaterialTheme.typography.h2,
         textAlign = TextAlign.Center,
+      )
+
+      Text(
         modifier = Modifier
           .constrainAs(content) {
             centerHorizontallyTo(parent)
             top.linkTo(title.bottom)
           }
           .padding(horizontal = 8.dp)
-          .padding(bottom = 12.dp)
+          .padding(bottom = 12.dp),
+        text = poster.playtime,
+        style = MaterialTheme.typography.body1,
+        textAlign = TextAlign.Center,
       )
     }
   }
 }
 
-@Preview
 @Composable
+@Preview(name = "HomePoster Light Theme")
 private fun HomePosterPreviewLight() {
   DisneyComposeTheme(darkTheme = false) {
     HomePoster(
-      poster = Poster.mock(),
-      selectPoster = {}
+      poster = Poster.mock()
     )
   }
 }
 
-@Preview
 @Composable
+@Preview(name = "HomePoster Dark Theme")
 private fun HomePosterPreviewDark() {
   DisneyComposeTheme(darkTheme = true) {
     HomePoster(
-      poster = Poster.mock(),
-      selectPoster = {}
+      poster = Poster.mock()
     )
   }
 }
