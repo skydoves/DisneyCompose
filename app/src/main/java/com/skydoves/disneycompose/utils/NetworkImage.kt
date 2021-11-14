@@ -16,9 +16,12 @@
 
 package com.skydoves.disneycompose.utils
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,10 +59,16 @@ fun NetworkImage(
       dropOff = 0.65f
     ),
     failure = {
-      Text(
-        text = "image request failed.",
-        style = MaterialTheme.typography.body2
-      )
+      Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+      ) {
+        Text(
+          text = "image request failed.",
+          style = MaterialTheme.typography.body2
+        )
+      }
     }
   )
 }

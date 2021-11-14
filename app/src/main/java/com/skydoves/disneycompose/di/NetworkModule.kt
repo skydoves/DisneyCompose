@@ -17,7 +17,10 @@
 package com.skydoves.disneycompose.di
 
 import android.content.Context
+import android.os.Build
 import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.util.CoilUtils
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.network.RequestInterceptor
@@ -53,7 +56,13 @@ object NetworkModule {
   ): ImageLoader {
     return ImageLoader.Builder(context)
       .okHttpClient { okHttpClient }
-      .build()
+      .componentRegistry {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+          add(ImageDecoderDecoder(context))
+        } else {
+          add(GifDecoder())
+        }
+      }.build()
   }
 
   @Provides
