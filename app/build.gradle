@@ -1,148 +1,144 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+  id 'com.android.application'
+  id 'kotlin-android'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
 }
 
 apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion versions.compileSdk
-    defaultConfig {
-        applicationId "com.skydoves.disneycompose"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
-        testInstrumentationRunner "com.skydoves.disneycompose.AppTestRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
-            }
-        }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
-            }
-        }
+  compileSdkVersion versions.compileSdk
+  defaultConfig {
+    applicationId "com.skydoves.disneycompose"
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.compileSdk
+    versionCode versions.versionCode
+    versionName versions.versionName
+    testInstrumentationRunner "com.skydoves.disneycompose.AppTestRunner"
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
+        arguments += ["dagger.hilt.disableModulesHaveInstallInCheck" : "true"]
+      }
     }
+  }
 
-    lintOptions {
-        abortOnError false
-    }
+  lintOptions {
+    abortOnError false
+  }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
+  }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion versions.composeVersion
-    }
+  composeOptions {
+    kotlinCompilerExtensionVersion versions.composeVersion
+  }
 
-    kotlinOptions {
-        jvmTarget = "11"
-        useIR = true
-    }
+  kotlinOptions {
+    jvmTarget = "11"
+  }
 
-    buildFeatures {
-        compose true
-    }
+  buildFeatures {
+    compose true
+  }
 
-    sourceSets {
-        androidTest.java.srcDirs += "src/test-common/java"
-        test.java.srcDirs += "src/test-common/java"
-        test.assets.srcDirs += files("$projectDir/schemas".toString())
-    }
+  sourceSets {
+    androidTest.java.srcDirs += "src/test-common/java"
+    test.java.srcDirs += "src/test-common/java"
+    test.assets.srcDirs += files("$projectDir/schemas".toString())
+  }
 
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-            returnDefaultValues = true
-        }
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+      returnDefaultValues = true
     }
+  }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.time.ExperimentalTime"]
-        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"]
-        kotlinOptions.freeCompilerArgs += ["-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi"]
-        kotlinOptions.freeCompilerArgs += ["-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi"]
-    }
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions.freeCompilerArgs += [
+        "-Xopt-in=kotlin.time.ExperimentalTime",
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
+        "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi"
+    ]
+  }
 }
 
 dependencies {
-    // material
-    implementation "com.google.android.material:material:$versions.materialVersion"
+  // material
+  implementation "com.google.android.material:material:$versions.materialVersion"
 
-    // compose
-    implementation "androidx.compose.ui:ui:$versions.composeVersion"
-    implementation "androidx.activity:activity-compose:$versions.activityVersion"
-    implementation "androidx.compose.material:material:$versions.composeVersion"
-    implementation "androidx.compose.material:material-icons-extended:$versions.composeVersion"
-    implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
-    implementation "androidx.compose.foundation:foundation-layout:$versions.composeVersion"
-    implementation "androidx.compose.animation:animation:$versions.composeVersion"
-    implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
-    implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
-    implementation "androidx.navigation:navigation-compose:$versions.composeNavVersion"
-    implementation "androidx.compose.ui:ui-tooling:$versions.composeVersion"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$versions.composeVersion"
-    implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
+  // compose
+  implementation "androidx.compose.ui:ui:$versions.composeVersion"
+  implementation "androidx.activity:activity-compose:$versions.activityVersion"
+  implementation "androidx.compose.material:material:$versions.composeVersion"
+  implementation "androidx.compose.material:material-icons-extended:$versions.composeVersion"
+  implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
+  implementation "androidx.compose.foundation:foundation-layout:$versions.composeVersion"
+  implementation "androidx.compose.animation:animation:$versions.composeVersion"
+  implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
+  implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
+  implementation "androidx.navigation:navigation-compose:$versions.composeNavVersion"
+  implementation "androidx.compose.ui:ui-tooling:$versions.composeVersion"
+  implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
+  androidTestImplementation "androidx.compose.ui:ui-test-junit4:$versions.composeVersion"
 
-    // compose image loading
-    implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"
+  // compose image loading
+  implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"
 
-    // compose insets
-    implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"
+  // compose insets
+  implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"
 
-    // compose compatibles
-    implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
+  // compose compatibles
+  implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
 
-    // architecture components
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion"
-    implementation "androidx.room:room-ktx:$versions.roomVersion"
-    kapt "androidx.room:room-compiler:$versions.roomVersion"
-    testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+  // architecture components
+  implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion"
+  implementation "androidx.room:room-ktx:$versions.roomVersion"
+  kapt "androidx.room:room-compiler:$versions.roomVersion"
+  testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
-    // startup
-    implementation "androidx.startup:startup-runtime:$versions.startupVersion"
+  // startup
+  implementation "androidx.startup:startup-runtime:$versions.startupVersion"
 
-    // hilt
-    implementation "com.google.dagger:hilt-android:$versions.hiltCoreVersion"
-    implementation "androidx.hilt:hilt-navigation-compose:$versions.hiltComposeNavigation"
-    kapt "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
-    kapt "androidx.hilt:hilt-compiler:$versions.hiltVersion"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltCoreVersion"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
+  // hilt
+  implementation "com.google.dagger:hilt-android:$versions.hiltVersion"
+  implementation "androidx.hilt:hilt-navigation-compose:$versions.hiltComposeNavigation"
+  kapt "com.google.dagger:hilt-compiler:$versions.hiltVersion"
+  androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltVersion"
+  kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hiltVersion"
 
-    // network
-    implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion"
+  // network
+  implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
+  implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+  implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+  testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion"
 
-    // coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+  // coroutines
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
 
-    // whatIf
-    implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
+  // whatIf
+  implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
 
-    // logging
-    implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+  // logging
+  implementation "com.jakewharton.timber:timber:$versions.timberVersion"
 
-    // unit test
-    testImplementation "junit:junit:$versions.junitVersion"
-    testImplementation "androidx.test:core:$versions.androidxTest"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
-    testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
-    testImplementation "app.cash.turbine:turbine:$versions.turbineVersion"
-    testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
-    androidTestImplementation "com.google.truth:truth:$versions.truthVersion"
-    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
-    androidTestImplementation "com.android.support.test:runner:$versions.androidTestRunner"
+  // unit test
+  testImplementation "junit:junit:$versions.junitVersion"
+  testImplementation "androidx.test:core:$versions.androidxTest"
+  testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
+  testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
+  testImplementation "app.cash.turbine:turbine:$versions.turbineVersion"
+  testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
+  androidTestImplementation "com.google.truth:truth:$versions.truthVersion"
+  androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+  androidTestImplementation "com.android.support.test:runner:$versions.androidTestRunner"
 }
 
 apply from: '../spotless.gradle'

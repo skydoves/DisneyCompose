@@ -44,7 +44,7 @@ import com.skydoves.landscapist.palette.BitmapPalette
 fun NetworkImage(
   @PreviewParameter(NetworkUrlPreviewProvider::class) url: String,
   modifier: Modifier = Modifier,
-  circularRevealedEnabled: Boolean = false,
+  circularRevealEnabled: Boolean = false,
   contentScale: ContentScale = ContentScale.Crop,
   bitmapPalette: BitmapPalette? = null
 ) {
@@ -52,7 +52,7 @@ fun NetworkImage(
     imageModel = url,
     modifier = modifier,
     contentScale = contentScale,
-    circularReveal = CircularReveal(duration = 250),
+    circularReveal = CircularReveal(duration = 300).takeIf { circularRevealEnabled },
     bitmapPalette = bitmapPalette,
     previewPlaceholder = R.drawable.poster,
     shimmerParams = ShimmerParams(
