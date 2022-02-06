@@ -103,7 +103,7 @@ private fun PosterDetailsBody(
           }
           .fillMaxWidth()
           .aspectRatio(0.85f),
-        circularRevealedEnabled = true,
+        circularRevealEnabled = true,
         bitmapPalette = BitmapPalette {
           palette = it
         }
