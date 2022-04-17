@@ -20,9 +20,7 @@ import androidx.annotation.WorkerThread
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.persistence.PosterDao
-import com.skydoves.sandwich.message
-import com.skydoves.sandwich.onError
-import com.skydoves.sandwich.onException
+import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
@@ -56,16 +54,9 @@ class MainRepository @Inject constructor(
           posterDao.insertPosterList(data)
           emit(data)
         }
-        // handle the case when the API request gets an error response.
+        // handle the case when the API request is fails.
         // e.g. internal server error.
-        .onError {
-          onError(message())
-        }
-        // handle the case when the API request gets an exception response.
-        // e.g. network connection error.
-        .onException {
-          onError(message())
-        }
+        .onFailure { onError(this) }
     } else {
       emit(posters)
     }
