@@ -24,7 +24,7 @@ import coil.decode.ImageDecoderDecoder
 import coil.util.CoilUtils
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.network.RequestInterceptor
-import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
+import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -74,7 +74,7 @@ object NetworkModule {
         "https://gist.githubusercontent.com/skydoves/176c209dbce4a53c0ff9589e07255f30/raw/6489d9712702e093c4df71500fb822f0d408ef75/"
       )
       .addConverterFactory(GsonConverterFactory.create())
-      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
+      .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
       .build()
   }
 
