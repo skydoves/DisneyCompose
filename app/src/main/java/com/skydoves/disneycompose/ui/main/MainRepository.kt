@@ -20,6 +20,7 @@ import androidx.annotation.WorkerThread
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.persistence.PosterDao
+import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +57,7 @@ class MainRepository @Inject constructor(
         }
         // handle the case when the API request is fails.
         // e.g. internal server error.
-        .onFailure { onError(this) }
+        .onFailure { onError(message()) }
     } else {
       emit(posters)
     }
