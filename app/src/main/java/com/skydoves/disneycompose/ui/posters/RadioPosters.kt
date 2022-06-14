@@ -61,6 +61,7 @@ fun RadioPosters(
     ) {
       items(
         items = posters,
+        key = { it.id },
         itemContent = { poster ->
           RadioPoster(
             poster = poster,

@@ -21,7 +21,6 @@ import android.os.Build
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
-import coil.util.CoilUtils
 import com.skydoves.disneycompose.network.DisneyService
 import com.skydoves.disneycompose.network.RequestInterceptor
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
@@ -41,10 +40,9 @@ object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
+  fun provideOkHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
       .addInterceptor(RequestInterceptor())
-      .cache(CoilUtils.createDefaultCache(context))
       .build()
   }
 
@@ -56,11 +54,11 @@ object NetworkModule {
   ): ImageLoader {
     return ImageLoader.Builder(context)
       .okHttpClient { okHttpClient }
-      .componentRegistry {
+      .components {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-          add(ImageDecoderDecoder(context))
+          add(ImageDecoderDecoder.Factory())
         } else {
-          add(GifDecoder())
+          add(GifDecoder.Factory())
         }
       }.build()
   }
