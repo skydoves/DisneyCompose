@@ -51,6 +51,7 @@ import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.navigationBarsPadding
 import com.skydoves.disneycompose.R
 import com.skydoves.disneycompose.model.Poster
+import com.skydoves.disneycompose.ui.custom.AnimatedBottomNav
 import com.skydoves.disneycompose.ui.main.MainViewModel
 import com.skydoves.disneycompose.ui.theme.purple200
 
@@ -72,25 +73,30 @@ fun Posters(
       modifier = Modifier.constrainAs(body) {
         top.linkTo(parent.top)
       },
-      bottomBar = {
-        BottomNavigation(
-          backgroundColor = purple200,
-          modifier = Modifier
-            .navigationBarsHeight(56.dp)
-        ) {
-          tabs.forEach { tab ->
-            BottomNavigationItem(
-              icon = { Icon(imageVector = tab.icon, contentDescription = null) },
-              label = { Text(text = stringResource(tab.title), color = Color.White) },
-              selected = tab == selectedTab,
-              onClick = { viewModel.selectTab(tab.title) },
-              selectedContentColor = LocalContentColor.current,
-              unselectedContentColor = LocalContentColor.current,
-              modifier = Modifier.navigationBarsPadding()
-            )
-          }
-        }
+      bottomBar = { AnimatedBottomNav(
+        selectedTab = selectedTab,
+        onItemClick = {viewModel.selectTab(it)}
+       )
       }
+//      bottomBar = {
+//        BottomNavigation(
+//          backgroundColor = purple200,
+//          modifier = Modifier
+//            .navigationBarsHeight(56.dp)
+//        ) {
+//          tabs.forEach { tab ->
+//            BottomNavigationItem(
+//              icon = { Icon(imageVector = tab.icon, contentDescription = null) },
+//              label = { Text(text = stringResource(tab.title), color = Color.White) },
+//              selected = tab == selectedTab,
+//              onClick = { viewModel.selectTab(tab.title) },
+//              selectedContentColor = LocalContentColor.current,
+//              unselectedContentColor = LocalContentColor.current,
+//              modifier = Modifier.navigationBarsPadding()
+//            )
+//          }
+//        }
+//      }
     ) { innerPadding ->
       val modifier = Modifier.padding(innerPadding)
       Crossfade(selectedTab) { destination ->
