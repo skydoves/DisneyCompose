@@ -1,18 +1,18 @@
 ext.versions = [
     minSdk               : 21,
-    compileSdk           : 31,
+    compileSdk           : 32,
     versionCode          : 4,
     versionName          : '1.0.3',
 
     gradleBuildTool      : '7.1.2',
     spotlessGradle       : '6.3.0',
-    kotlin               : '1.6.10',
+    kotlin               : '1.6.21',
 
     // material
     materialVersion      : '1.5.0',
 
     // compose
-    composeVersion       : '1.1.1',
+    composeVersion       : '1.2.0-rc02',
     constraintVersion    : '1.0.0-rc01',
     activityVersion      : '1.4.0',
     composeNavVersion    : '2.4.0-alpha05',
