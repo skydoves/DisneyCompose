@@ -1,11 +1,11 @@
 ext.versions = [
-        minSdk               : 21,
+        minSdk               : 23,
         compileSdk           : 32,
         versionCode          : 4,
         versionName          : '1.0.3',
 
-        gradleBuildTool      : '7.2.0',
-        spotlessGradle       : '6.3.0',
+        gradleBuildTool      : '7.2.1',
+        spotlessGradle       : '6.7.0',
         kotlin               : '1.7.0',
 
         // material
@@ -43,7 +43,7 @@ ext.versions = [
         // network
         retrofitVersion      : '2.9.0',
         okhttpVersion        : '4.9.1',
-        sandwichVersion      : '1.2.5',
+        sandwichVersion      : '1.2.6',
 
         // coroutines
         coroutinesVersion    : '1.6.0',
@@ -53,6 +53,11 @@ ext.versions = [
 
         // debugging
         timberVersion        : '5.0.1',
+
+        // benchmark
+        baselineProfiles    : '1.2.0-rc01',
+        macroBenchmark      : '1.1.0',
+        uiAutomator         : '2.2.0',
 
         // unit test
         truthVersion         : '1.0.1',

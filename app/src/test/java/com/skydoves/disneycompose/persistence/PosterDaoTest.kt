@@ -16,22 +16,27 @@
 
 package com.skydoves.disneycompose.persistence
 
+import com.skydoves.disneycompose.MainCoroutinesRule
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.utils.MockTestUtil.mockPosterList
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [21])
+@Config(sdk = [23])
 class PosterDaoTest : LocalDatabase() {
 
   private lateinit var posterDao: PosterDao
+
+  @get:Rule
+  val coroutinesRule = MainCoroutinesRule()
 
   @Before
   fun init() {
@@ -39,7 +44,7 @@ class PosterDaoTest : LocalDatabase() {
   }
 
   @Test
-  fun insertAndLoadPosterListTest() = runBlocking {
+  fun insertAndLoadPosterListTest() = runTest {
     val mockDataList = mockPosterList()
     posterDao.insertPosterList(mockDataList)
 

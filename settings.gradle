@@ -1,2 +1,3 @@
 rootProject.name = "DisneyCompose"
 include ':app'
+include ':benchmark'
