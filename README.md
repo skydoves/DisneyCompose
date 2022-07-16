@@ -18,9 +18,9 @@ Go to the [Releases](https://github.com/skydoves/DisneyCompose/releases) to down
 
 ## Screenshots
 <p align="center">
-<img src="https://user-images.githubusercontent.com/24237865/93901108-238eb000-fd31-11ea-9fac-c9ba1eca146c.gif" width="32%"/>
-<img src="/preview/preview0.gif" width="32%"/>
-<img src="/preview/preview1.gif" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/93901108-238eb000-fd31-11ea-9fac-c9ba1eca146c.gif" width="280"/>
+<img src="/preview/preview0.gif" width="280"/>
+<img src="/preview/preview1.gif" width="280"/>
 </p>
 
 ## Tech stack & Open-source libraries
