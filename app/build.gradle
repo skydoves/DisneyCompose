@@ -96,6 +96,9 @@ dependencies {
 
   // compose image loading
   implementation "com.github.skydoves:landscapist-coil:$versions.landscapistVersion"
+  implementation "com.github.skydoves:landscapist-animation:$versions.landscapistVersion"
+  implementation "com.github.skydoves:landscapist-placeholder:$versions.landscapistVersion"
+  implementation "com.github.skydoves:landscapist-palette:$versions.landscapistVersion"
 
   // compose insets
   implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"

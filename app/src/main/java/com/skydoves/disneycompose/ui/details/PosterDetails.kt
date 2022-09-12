@@ -56,12 +56,9 @@ import androidx.palette.graphics.Palette
 import com.skydoves.disneycompose.extensions.paletteColorList
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
-import com.skydoves.disneycompose.ui.theme.background800
-import com.skydoves.disneycompose.ui.theme.shimmerHighLight
 import com.skydoves.disneycompose.utils.NetworkImage
-import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
-import com.skydoves.landscapist.palette.BitmapPalette
+import com.skydoves.landscapist.palette.PaletteLoadedListener
 
 @Composable
 fun PosterDetails(
@@ -104,7 +101,7 @@ private fun PosterDetailsBody(
           .fillMaxWidth()
           .aspectRatio(0.85f),
         circularRevealEnabled = true,
-        bitmapPalette = BitmapPalette {
+        paletteLoadedListener = PaletteLoadedListener {
           palette = it
         }
       )
@@ -152,10 +149,6 @@ private fun PosterDetailsBody(
 
       CoilImage(
         imageModel = poster.gif,
-        shimmerParams = ShimmerParams(
-          baseColor = background800,
-          highlightColor = shimmerHighLight
-        ),
         modifier = Modifier
           .fillMaxWidth()
           .padding(8.dp)

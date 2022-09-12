@@ -27,11 +27,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.skydoves.disneycompose.R
-import com.skydoves.disneycompose.ui.theme.shimmerHighLight
-import com.skydoves.landscapist.CircularReveal
-import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.ImageOptions
+import com.skydoves.landscapist.animation.circular.CircularRevealPlugin
+import com.skydoves.landscapist.animation.crossfade.CrossfadePlugin
 import com.skydoves.landscapist.coil.CoilImage
-import com.skydoves.landscapist.palette.BitmapPalette
+import com.skydoves.landscapist.components.rememberImageComponent
+import com.skydoves.landscapist.palette.PaletteLoadedListener
+import com.skydoves.landscapist.palette.PalettePlugin
 
 /**
  * A wrapper around [CoilImage] setting a default [contentScale] and showing
@@ -46,20 +48,22 @@ fun NetworkImage(
   modifier: Modifier = Modifier,
   circularRevealEnabled: Boolean = false,
   contentScale: ContentScale = ContentScale.Crop,
-  bitmapPalette: BitmapPalette? = null
+  paletteLoadedListener: PaletteLoadedListener? = null
 ) {
   CoilImage(
     imageModel = url,
     modifier = modifier,
-    contentScale = contentScale,
-    circularReveal = CircularReveal(duration = 300).takeIf { circularRevealEnabled },
-    bitmapPalette = bitmapPalette,
+    imageOptions = ImageOptions(contentScale = contentScale),
+    component = rememberImageComponent {
+      if (circularRevealEnabled) {
+        +CircularRevealPlugin()
+      }
+      if (paletteLoadedListener != null) {
+        +PalettePlugin(paletteLoadedListener = paletteLoadedListener)
+      }
+      +CrossfadePlugin(duration = 350)
+    },
     previewPlaceholder = R.drawable.poster,
-    shimmerParams = ShimmerParams(
-      baseColor = MaterialTheme.colors.background,
-      highlightColor = shimmerHighLight,
-      dropOff = 0.65f
-    ),
     failure = {
       Column(
         modifier = modifier,
