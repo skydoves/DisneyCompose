@@ -51,7 +51,7 @@ fun NetworkImage(
   paletteLoadedListener: PaletteLoadedListener? = null
 ) {
   CoilImage(
-    imageModel = url,
+    imageModel = { url },
     modifier = modifier,
     imageOptions = ImageOptions(contentScale = contentScale),
     component = rememberImageComponent {

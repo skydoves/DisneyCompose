@@ -42,8 +42,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,7 +56,7 @@ import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
 import com.skydoves.disneycompose.utils.NetworkImage
 import com.skydoves.landscapist.coil.CoilImage
-import com.skydoves.landscapist.palette.PaletteLoadedListener
+import com.skydoves.landscapist.palette.rememberPaletteState
 
 @Composable
 fun PosterDetails(
@@ -87,7 +85,7 @@ private fun PosterDetailsBody(
       .background(MaterialTheme.colors.background)
       .fillMaxHeight()
   ) {
-    var palette by remember { mutableStateOf<Palette?>(null) }
+    var palette by rememberPaletteState(value = null)
 
     ConstraintLayout {
       val (arrow, image, paletteRow, title, content, gifTitle, gif) = createRefs()
@@ -101,9 +99,7 @@ private fun PosterDetailsBody(
           .fillMaxWidth()
           .aspectRatio(0.85f),
         circularRevealEnabled = true,
-        paletteLoadedListener = PaletteLoadedListener {
-          palette = it
-        }
+        paletteLoadedListener = { palette = it }
       )
 
       ColorPalettes(
@@ -148,7 +144,7 @@ private fun PosterDetailsBody(
       )
 
       CoilImage(
-        imageModel = poster.gif,
+        imageModel = { poster.gif },
         modifier = Modifier
           .fillMaxWidth()
           .padding(8.dp)
