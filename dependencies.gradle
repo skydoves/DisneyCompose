@@ -13,13 +13,13 @@ ext.versions = [
 
         // compose
         composeCompiler      : '1.3.2',
-        composeVersion       : '1.3.0',
+        composeVersion       : '1.3.1',
         constraintVersion    : '1.0.0',
         activityVersion      : '1.4.0',
         composeNavVersion    : '2.5.0',
 
         // compose image loading
-        landscapistVersion   : '2.0.3',
+        landscapistVersion   : '2.1.0',
 
         // compose compatibles
         orchestraVersion     : '1.2.0',
@@ -37,7 +37,7 @@ ext.versions = [
         startupVersion       : '1.1.1',
 
         // di
-        hiltVersion          : '2.42',
+        hiltVersion          : '2.44',
         hiltComposeNavigation: '1.0.0',
 
         // network
