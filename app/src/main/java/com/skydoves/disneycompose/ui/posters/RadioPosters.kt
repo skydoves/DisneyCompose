@@ -18,13 +18,7 @@ package com.skydoves.disneycompose.ui.posters
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -50,11 +44,7 @@ fun RadioPosters(
   selectPoster: (Long) -> Unit = {},
 ) {
   val listState = rememberLazyListState()
-  Column(
-    modifier = modifier
-      .systemBarsPadding()
-      .background(MaterialTheme.colors.background)
-  ) {
+  Column(modifier.background(MaterialTheme.colors.background)) {
     LazyColumn(
       state = listState,
       contentPadding = PaddingValues(4.dp)

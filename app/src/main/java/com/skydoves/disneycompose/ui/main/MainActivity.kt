@@ -22,6 +22,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.core.view.WindowCompat
 import com.skydoves.disneycompose.ui.root.RootViewModel
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
 import com.skydoves.landscapist.coil.LocalCoilImageLoader
@@ -35,6 +36,8 @@ class MainActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    WindowCompat.setDecorFitsSystemWindows(window, false)
 
     setContent {
       CompositionLocalProvider(LocalCoilImageLoader provides viewModel.imageLoader) {
