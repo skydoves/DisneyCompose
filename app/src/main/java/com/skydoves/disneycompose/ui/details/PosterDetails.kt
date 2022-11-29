@@ -84,7 +84,6 @@ private fun PosterDetailsBody(
     modifier = Modifier
       .verticalScroll(rememberScrollState())
       .background(MaterialTheme.colors.background)
-      .statusBarsPadding()
       .fillMaxHeight()
   ) {
     var palette by rememberPaletteState(value = null)
@@ -175,6 +174,7 @@ private fun PosterDetailsBody(
             top.linkTo(parent.top)
           }
           .padding(12.dp)
+          .statusBarsPadding()
           .clickable(onClick = { pressOnBack() })
       )
     }

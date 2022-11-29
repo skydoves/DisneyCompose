@@ -16,19 +16,44 @@
 
 package com.skydoves.disneycompose.ui.main
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.skydoves.disneycompose.ui.details.PosterDetails
 import com.skydoves.disneycompose.ui.posters.Posters
 
 @Composable
 fun DisneyMainScreen() {
   val navController = rememberNavController()
+
+  val colors = MaterialTheme.colors
+  val systemUiController = rememberSystemUiController()
+
+  var statusBarColor by remember { mutableStateOf(colors.primaryVariant) }
+  var navigationBarColor by remember { mutableStateOf(colors.primaryVariant) }
+
+  val animatedStatusBarColor by animateColorAsState(
+    targetValue = statusBarColor,
+    animationSpec = tween()
+  )
+  val animatedNavigationBarColor by animateColorAsState(
+    targetValue = navigationBarColor,
+    animationSpec = tween()
+  )
 
   NavHost(navController = navController, startDestination = NavScreen.Home.route) {
     composable(NavScreen.Home.route) {
@@ -38,6 +63,11 @@ fun DisneyMainScreen() {
           navController.navigate("${NavScreen.PosterDetails.route}/$it")
         }
       )
+
+      LaunchedEffect(Unit) {
+        statusBarColor = colors.primaryVariant
+        navigationBarColor = colors.primaryVariant
+      }
     }
     composable(
       route = NavScreen.PosterDetails.routeWithArgument,
@@ -51,7 +81,17 @@ fun DisneyMainScreen() {
       PosterDetails(posterId = posterId, viewModel = hiltViewModel()) {
         navController.navigateUp()
       }
+
+      LaunchedEffect(Unit) {
+        statusBarColor = Color.Transparent
+        navigationBarColor = colors.background
+      }
     }
+  }
+
+  LaunchedEffect(animatedStatusBarColor, animatedNavigationBarColor) {
+    systemUiController.setStatusBarColor(animatedStatusBarColor)
+    systemUiController.setNavigationBarColor(animatedNavigationBarColor)
   }
 }
 
