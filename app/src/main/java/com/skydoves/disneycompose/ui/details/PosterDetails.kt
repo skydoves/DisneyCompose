@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -83,6 +84,7 @@ private fun PosterDetailsBody(
     modifier = Modifier
       .verticalScroll(rememberScrollState())
       .background(MaterialTheme.colors.background)
+      .statusBarsPadding()
       .fillMaxHeight()
   ) {
     var palette by rememberPaletteState(value = null)

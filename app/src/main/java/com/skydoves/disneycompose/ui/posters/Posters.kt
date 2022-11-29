@@ -19,7 +19,9 @@ package com.skydoves.disneycompose.ui.posters
 import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.CircularProgressIndicator
@@ -47,8 +49,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.google.accompanist.insets.navigationBarsHeight
-import com.google.accompanist.insets.navigationBarsPadding
 import com.skydoves.disneycompose.R
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.main.MainViewModel
@@ -75,8 +75,7 @@ fun Posters(
       bottomBar = {
         BottomNavigation(
           backgroundColor = purple200,
-          modifier = Modifier
-            .navigationBarsHeight(56.dp)
+          modifier = Modifier.navigationBarsPadding()
         ) {
           tabs.forEach { tab ->
             BottomNavigationItem(
@@ -86,7 +85,6 @@ fun Posters(
               onClick = { viewModel.selectTab(tab.title) },
               selectedContentColor = LocalContentColor.current,
               unselectedContentColor = LocalContentColor.current,
-              modifier = Modifier.navigationBarsPadding()
             )
           }
         }
@@ -121,7 +119,9 @@ private fun PosterAppBar() {
   TopAppBar(
     elevation = 6.dp,
     backgroundColor = purple200,
-    modifier = Modifier.height(58.dp)
+    modifier = Modifier
+      .statusBarsPadding()
+      .height(58.dp)
   ) {
     Text(
       modifier = Modifier

@@ -38,7 +38,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.google.accompanist.insets.statusBarsPadding
 import com.skydoves.disneycompose.model.Poster
 import com.skydoves.disneycompose.ui.custom.StaggeredVerticalGrid
 import com.skydoves.disneycompose.ui.theme.DisneyComposeTheme
@@ -53,7 +52,6 @@ fun LibraryPosters(
   Column(
     modifier = modifier
       .verticalScroll(rememberScrollState())
-      .statusBarsPadding()
       .background(MaterialTheme.colors.background)
   ) {
     StaggeredVerticalGrid(

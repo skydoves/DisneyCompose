@@ -100,9 +100,6 @@ dependencies {
   implementation "com.github.skydoves:landscapist-placeholder:$versions.landscapistVersion"
   implementation "com.github.skydoves:landscapist-palette:$versions.landscapistVersion"
 
-  // compose insets
-  implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"
-
   // compose compatibles
   implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
 
