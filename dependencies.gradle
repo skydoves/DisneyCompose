@@ -21,6 +21,9 @@ ext.versions = [
         // compose image loading
         landscapistVersion   : '2.1.0',
 
+        // accompanist
+        accompanistVersion   : '0.28.0',
+
         // compose compatibles
         orchestraVersion     : '1.2.0',
 

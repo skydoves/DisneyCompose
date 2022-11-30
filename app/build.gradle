@@ -100,6 +100,9 @@ dependencies {
   implementation "com.github.skydoves:landscapist-placeholder:$versions.landscapistVersion"
   implementation "com.github.skydoves:landscapist-palette:$versions.landscapistVersion"
 
+  // accompanist
+  implementation "com.google.accompanist:accompanist-systemuicontroller:$versions.accompanistVersion"
+
   // compose compatibles
   implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
 
