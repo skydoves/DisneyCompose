@@ -4,22 +4,22 @@ ext.versions = [
         versionCode          : 5,
         versionName          : '1.0.4',
 
-        gradleBuildTool      : '7.3.0',
+        gradleBuildTool      : '7.4.1',
         spotlessGradle       : '6.7.0',
-        kotlin               : '1.8.0',
+        kotlin               : '1.8.10',
 
         // material
         materialVersion      : '1.6.0',
 
         // compose
-        composeCompiler      : '1.4.0',
+        composeCompiler      : '1.4.4',
         composeVersion       : '1.3.1',
         constraintVersion    : '1.0.0',
         activityVersion      : '1.4.0',
         composeNavVersion    : '2.5.0',
 
         // compose image loading
-        landscapistVersion   : '2.1.2',
+        landscapistVersion   : '2.1.13',
 
         // accompanist
         accompanistVersion   : '0.28.0',
