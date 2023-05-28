@@ -54,7 +54,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.palette.graphics.Palette
 import com.skydoves.disneycompose.extensions.paletteColorList
 import com.skydoves.disneycompose.model.Poster
-import com.skydoves.disneycompose.ui.custom.ImageBalloonAnchor
 import com.skydoves.disneycompose.utils.NetworkImage
 import com.skydoves.landscapist.coil.CoilImage
 import com.skydoves.landscapist.palette.rememberPaletteState
@@ -154,15 +153,6 @@ private fun PosterDetailsBody(
           .constrainAs(gif) {
             top.linkTo(gifTitle.bottom)
           },
-      )
-
-      ImageBalloonAnchor(
-        reference = image,
-        modifier = Modifier
-          .fillMaxWidth()
-          .aspectRatio(0.85f),
-        content = poster.name,
-        onClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
       )
 
       Icon(

@@ -103,8 +103,8 @@ dependencies {
   // accompanist
   implementation "com.google.accompanist:accompanist-systemuicontroller:$versions.accompanistVersion"
 
-  // compose compatibles
-  implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
+  // compose balloon tooltips
+  implementation "com.github.skydoves:balloon-compose:$versions.balloon"
 
   // architecture components
   implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion"
