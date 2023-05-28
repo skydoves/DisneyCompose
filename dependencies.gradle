@@ -19,7 +19,7 @@ ext.versions = [
         composeNavVersion    : '2.5.0',
 
         // compose image loading
-        landscapistVersion   : '2.1.13',
+        landscapistVersion   : '2.2.0',
 
         // accompanist
         accompanistVersion   : '0.28.0',
